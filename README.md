@@ -1,2 +1,1 @@
-# digital-ojt-development-beginner-cause-DroneInventorySystem
-DIGITAL OJT 在庫管理システム
+# 【開発コース（MVC編）】製造業クライアントの在庫管理システム開発（初級編）
