@@ -12,7 +12,7 @@ import jakarta.validation.ConstraintValidatorContext;
 /**
  * 在庫センター情報画面のバリデーションチェック 実装クラス
  * 
- * @author your name
+ * @author ueno
  */
 public class CenterInfoFormValidatorImpl implements ConstraintValidator<CenterInfoFormValidator, CenterInfoForm> {
 
