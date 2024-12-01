@@ -55,7 +55,7 @@ public class WebSecurityConfig {
 				.formLogin(
 						login -> login.loginPage(UrlConsts.LOGIN)
 								.usernameParameter(ADMIN_ID)
-								.defaultSuccessUrl(UrlConsts.STOCK_LIST))
+								.defaultSuccessUrl(UrlConsts.CATEGORY_INFO))
 				.logout(logout -> logout.logoutSuccessUrl(UrlConsts.LOGIN));
 
 		return http.build();
