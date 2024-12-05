@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+
 /**
  * 分類情報Entity
  * 
@@ -21,8 +22,9 @@ public class CategoryInfo {
 	@Id
 	private int category_id;
 	
+	private String categoryName;
 	/*
-	varchar category_name;
+	private category_name VARCHAR(256);
 	
 	varchar delete_flag;
 	
