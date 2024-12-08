@@ -6,7 +6,7 @@ package com.digitalojt.web.consts;
  * @author ueno
  */
 public enum PartsRegion {
-	
+
 	FRAME("フレーム"),
 	PROPELLER("プロペラ"),
 	MOTOR("電動モーター"),
@@ -17,14 +17,14 @@ public enum PartsRegion {
 	RECEIVER("受信機"),
 	GPS("GPSモジュール"),
 	SENSOR("カメラ／センサー");
-	
-    private final String name;
+
+	private final String partsRegionName;
 
 	PartsRegion(String partsName) {
-        this.name = partsName;
-    }
+		this.partsRegionName = partsName;
+	}
 
-    public String getPartsName() {
-        return name;
-    }
+	public String getPartsName() {
+		return partsRegionName;
+	}
 }
