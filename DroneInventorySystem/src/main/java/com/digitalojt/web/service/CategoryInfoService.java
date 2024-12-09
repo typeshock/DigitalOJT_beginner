@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class CategoryInfoService {
-		
+
 	/** 分類情報テーブル リポジトリー */
 	private final CategoryInfoRepository repository;
 

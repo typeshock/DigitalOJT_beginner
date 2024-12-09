@@ -7,15 +7,14 @@ package com.digitalojt.web.consts;
  */
 public enum PartsRegion {
 
-	FRAME("フレーム"),
-	PROPELLER("プロペラ"),
-	MOTOR("電動モーター"),
-	REGULATOR("電子速度調整器"),
-	BATTERY("バッテリー"),
-	FLIGHTCONTROLLER("フライトコントローラー"),
-	REMOTECONTROLLER("リモートコントローラー"),
-	RECEIVER("受信機"),
-	GPS("GPSモジュール"),
+	FRAME("フレーム"), PROPELLER("プロペラ"),
+	MOTOR("電動モーター"), 
+	REGULATOR("電子速度調整器"), 
+	BATTERY("バッテリー"), 
+	FLIGHTCONTROLLER(
+			"フライトコントローラー"), 
+	REMOTECONTROLLER("リモートコントローラー"), 
+	RECEIVER("受信機"), GPS("GPSモジュール"), 
 	SENSOR("カメラ／センサー");
 
 	private final String partsRegionName;
