@@ -18,10 +18,10 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class CategoryInfoService {
-
+		
 	/** 分類情報テーブル リポジトリー */
 	private final CategoryInfoRepository repository;
-
+	
 	/**
 	 * 部品情報をすべて取得
 	 * 
@@ -29,5 +29,16 @@ public class CategoryInfoService {
 	 */
 	public List<CategoryInfo> getCategoryInfoData() {
 		return repository.findAll();
+	}
+	
+	/**
+	 * 引数に合致する分類情報を取得
+	 * 
+	 * @param category_name
+	 * @param partsRegion
+	 * @return
+	 */
+	public List<CategoryInfo> getCategoryInfoData(String category_name, String partsRegion) {
+		return repository.findByCategoryNameAndPartsRegionAndStorageCapacity(category_name, partsRegion);
 	}
 }
