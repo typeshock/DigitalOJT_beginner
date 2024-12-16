@@ -28,7 +28,7 @@ public class CategoryInfo {
 	/**
 	 * 分類情報名
 	 */
-	private String category_name;
+	private String categoryName;
 	
 	/**
 	 * 部品アドレス

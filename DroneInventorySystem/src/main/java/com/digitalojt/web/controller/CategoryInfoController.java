@@ -76,7 +76,7 @@ public class CategoryInfoController {
 		if (bindingResult.hasErrors()) {
 
 			// エラーメッセージをプロパティファイルから取得
-			String errorMsg = MessageManager.getMessage(messageSource,	bindingResult.getGlobalError().getDefaultMessage());
+			String errorMsg = MessageManager.getMessage(messageSource, bindingResult.getGlobalError().getDefaultMessage());
 			model.addAttribute("errorMsg", errorMsg);
 
 			// 部品Enumをリストに変換
@@ -89,7 +89,7 @@ public class CategoryInfoController {
 		}
 
 		// 分類情報画面に表示するデータを取得
-		List<CategoryInfo> categoryInfoList = categoryInfoService.getCategoryInfoData(form.getCategory_name(),form.getPartsAddress());
+		List<CategoryInfo> categoryInfoList = categoryInfoService.getCategoryInfoData(form.getCategoryName());
 
 		// 画面表示用に商品情報リストをセット
 		model.addAttribute("categoryInfoList", categoryInfoList);

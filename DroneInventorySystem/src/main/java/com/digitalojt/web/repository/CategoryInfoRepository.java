@@ -20,14 +20,11 @@ public interface CategoryInfoRepository extends JpaRepository<CategoryInfo, Inte
 	/**
 	 * 引数に合致する分類情報を取得
 	 * 
-	 * @param category_name
-	 * @param partsRegion
+	 * @param categoryName
 	 * @return paramで検索した結果
 	 */
 	@Query("SELECT s FROM CategoryInfo s WHERE " +
-			"(:category_name = '' OR s.category_name LIKE %:category_name%) AND " +
-			"(:partsRegion = '' OR s.partsAddress LIKE %:partsRegion%)")
+			"(:categoryName = '' OR s.categoryName LIKE %:categoryName%)")
 	List<CategoryInfo> findByCategoryNameAndPartsRegionAndStorageCapacity(
-			String category_name,
-			String partsRegion);
+			String categoryName);
 }

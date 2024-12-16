@@ -19,13 +19,14 @@ public class CategoryInfoFormValidatorImpl implements ConstraintValidator<Catego
 	/**
 	 * バリデーションチェック
 	 */
+
+	// 最大文字数クラス定数
+	public final int MAX_LENGTH = 20;
+
 	@Override
 	public boolean isValid(CategoryInfoForm form, ConstraintValidatorContext context) {
 
-		// 最大文字数
-		final int MAX_LENGTH = 20;
-
-		boolean allFieldsEmpty = StringUtils.isEmpty(form.getCategory_name()) &&
+		boolean allFieldsEmpty = StringUtils.isEmpty(form.getCategoryName()) &&
 				StringUtils.isEmpty(form.getPartsAddress());
 
 		// すべてのフィールドが空かをチェック
@@ -37,10 +38,10 @@ public class CategoryInfoFormValidatorImpl implements ConstraintValidator<Catego
 		}
 
 		// 分類情報画面名のチェック
-		if (form.getCategory_name() != null) {
+		if (form.getCategoryName() != null) {
 
 			// 不正文字列チェック
-			if (ParmCheckUtil.isParameterInvalid(form.getCategory_name())) {
+			if (ParmCheckUtil.isParameterInvalid(form.getCategoryName())) {
 				context.disableDefaultConstraintViolation();
 				context.buildConstraintViolationWithTemplate(ErrorMessage.INVALID_INPUT_ERROR_MESSAGE)
 						.addConstraintViolation();
@@ -52,7 +53,7 @@ public class CategoryInfoFormValidatorImpl implements ConstraintValidator<Catego
 			 *  TODO:Formクラスをシンプルにしたく、@Sizeを使わずこちらで桁数チェックを行いました。
 			 *  	 車輪の再発明なので、しないほうがいいでしょうか？
 			 */
-			if (form.getCategory_name().length() > MAX_LENGTH) {
+			if (form.getCategoryName().length() > MAX_LENGTH) {
 				context.disableDefaultConstraintViolation();
 				context.buildConstraintViolationWithTemplate(ErrorMessage.CENTER_NAME_LENGTH_ERROR_MESSAGE)
 						.addConstraintViolation();
@@ -60,17 +61,6 @@ public class CategoryInfoFormValidatorImpl implements ConstraintValidator<Catego
 			}
 		}
 
-		// 部品分類のチェック
-		if (form.getPartsAddress() != null) {
-
-			// 不正文字列チェック
-			if (ParmCheckUtil.isParameterInvalid(form.getPartsAddress())) {
-				context.disableDefaultConstraintViolation();
-				context.buildConstraintViolationWithTemplate(ErrorMessage.INVALID_INPUT_ERROR_MESSAGE)
-						.addConstraintViolation();
-				return false;
-			}
-		}
 
 		// その他のバリデーションに問題なければtrueを返す
 		return true;

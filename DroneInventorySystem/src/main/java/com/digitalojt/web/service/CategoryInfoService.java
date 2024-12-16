@@ -34,11 +34,10 @@ public class CategoryInfoService {
 	/**
 	 * 引数に合致する分類情報を取得
 	 * 
-	 * @param category_name
-	 * @param partsRegion
+	 * @param categoryName
 	 * @return
 	 */
-	public List<CategoryInfo> getCategoryInfoData(String category_name, String partsRegion) {
-		return repository.findByCategoryNameAndPartsRegionAndStorageCapacity(category_name, partsRegion);
+	public List<CategoryInfo> getCategoryInfoData(String categoryName) {
+		return repository.findByCategoryNameAndPartsRegionAndStorageCapacity(categoryName);
 	}
 }

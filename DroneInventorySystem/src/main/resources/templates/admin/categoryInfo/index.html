@@ -16,19 +16,11 @@
 
 			<!-- 検索フォーム -->
 			<div class="search-container">
-				<form class="form-inline" method="post" th:action="@{'/admin/categoryInfo/search'}"	th:object="${CategoryInfoForm}">
+				<form class="form-inline" method="post" th:action="@{'/admin/categoryInfo/search'}" th:object="${CategoryInfoForm}">
 					<label for="searchTerm" class="mr-2">検索条件</label>
 
 					<label for="searchTerm" class="mr-2">部品名</label>
-					<input type="text" id="searchTerm" name="category_name" class="form-control mr-2">
-
-					<label for="searchTerm" class="mr-2">分類情報リスト</label>
-					<select id="searchTerm" name="partsAddress" class="form-control mr-2">
-						<option value="">選択してください</option>
-						<option th:each="partsRegions : ${partsRegions}"
-							th:value="${partsRegions.partsName}"
-							th:text="${partsRegions.partsName}"></option>
-					</select>
+					<input type="text" id="searchTerm" name="categoryName" class="form-control mr-2">
 
 					<button type="submit" class="btn btn-primary">検索</button>
 				</form>
@@ -45,7 +37,7 @@
 					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 						<tbody>
 							<tr th:each="item : ${categoryInfoList}">
-								<td> [[${item.category_name}]] </td>
+								<td> [[${item.categoryName}]] </td>
 							</tr>
 						</tbody>
 					</table>
