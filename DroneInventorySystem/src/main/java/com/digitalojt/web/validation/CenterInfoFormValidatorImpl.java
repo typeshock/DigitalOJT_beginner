@@ -19,11 +19,12 @@ public class CenterInfoFormValidatorImpl implements ConstraintValidator<CenterIn
 	/**
 	 * バリデーションチェック
 	 */
+	
+	// 最大文字数クラス定数
+	public final int MAX_LENGTH = 20;
+	
 	@Override
 	public boolean isValid(CenterInfoForm form, ConstraintValidatorContext context) {
-
-		// 最大文字数
-		final int MAX_LENGTH = 20;
 
 		boolean allFieldsEmpty = StringUtils.isEmpty(form.getCenterName()) &&
 				StringUtils.isEmpty(form.getRegion());

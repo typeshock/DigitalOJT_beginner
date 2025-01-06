@@ -4,12 +4,14 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.context.MessageSource;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.digitalojt.web.consts.ErrorMessage;
 import com.digitalojt.web.consts.PartsRegion;
 import com.digitalojt.web.consts.UrlConsts;
 import com.digitalojt.web.entity.CategoryInfo;
@@ -47,17 +49,30 @@ public class CategoryInfoController {
 	@GetMapping(UrlConsts.CATEGORY_INFO)
 	public String index(Model model) {
 
-		// 分類情報画面に表示するデータを取得
-		List<CategoryInfo> categoryInfoList = categoryInfoService.getCategoryInfoData();
+		try {
+			// 分類情報画面に表示するデータを取得
+			List<CategoryInfo> categoryInfoList = categoryInfoService.getCategoryInfoData();
 
-		// 画面表示用に部品情報リストをセット
-		model.addAttribute("categoryInfoList", categoryInfoList);
+			// 画面表示用に部品情報リストをセット
+			model.addAttribute("categoryInfoList", categoryInfoList);
 
-		// 部品Enumをリストに変換
-		List<PartsRegion> partsRegions = Arrays.asList(PartsRegion.values());
+			// 部品Enumをリストに変換
+			List<PartsRegion> partsRegions = Arrays.asList(PartsRegion.values());
 
-		// 部品プルダウン情報をセット
-		model.addAttribute("partsRegions", partsRegions);
+			// 部品プルダウン情報をセット
+			model.addAttribute("partsRegions", partsRegions);
+
+		} catch (NullPointerException categoryNullError) {
+			//Nullエラー処理
+			String errorMsg = ErrorMessage.LIST_EMPTY_ERROR_MESSAGE;
+			model.addAttribute("errorMsg", errorMsg);
+
+		} catch (DataAccessException categoryDbError) {
+			//データベース接続エラー処理
+			String errorMsg = ErrorMessage.DB_DISCONNECTED_ERROR_MESSAGE;
+			model.addAttribute("errorMsg", errorMsg);
+
+		}
 
 		return "admin/categoryInfo/index";
 	}
@@ -76,7 +91,7 @@ public class CategoryInfoController {
 		if (bindingResult.hasErrors()) {
 
 			// エラーメッセージをプロパティファイルから取得
-			String errorMsg = MessageManager.getMessage(messageSource, bindingResult.getGlobalError().getDefaultMessage());
+			String errorMsg = MessageManager.getMessage(messageSource,bindingResult.getGlobalError().getDefaultMessage());
 			model.addAttribute("errorMsg", errorMsg);
 
 			// 部品Enumをリストに変換

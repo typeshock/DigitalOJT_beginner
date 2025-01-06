@@ -22,4 +22,11 @@ public class ErrorMessage {
 
 	// 文字超過に関するエラーメッセージ
 	public static final String CENTER_NAME_LENGTH_ERROR_MESSAGE = "centerName.length.wrongInput";
+	
+	// リストが空の時のエラーメッセージ
+	public static final String LIST_EMPTY_ERROR_MESSAGE = "list.empty";
+
+	//データベース接続失敗時のエラーメッセージ
+	public static final String DB_DISCONNECTED_ERROR_MESSAGE = "db.disconnected";
+
 }
