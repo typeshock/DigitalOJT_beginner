@@ -19,10 +19,6 @@ public class CenterInfoFormValidatorImpl implements ConstraintValidator<CenterIn
 	/**
 	 * バリデーションチェック
 	 */
-	
-	// 最大文字数クラス定数
-	public final int MAX_LENGTH = 20;
-	
 	@Override
 	public boolean isValid(CenterInfoForm form, ConstraintValidatorContext context) {
 
@@ -49,11 +45,8 @@ public class CenterInfoFormValidatorImpl implements ConstraintValidator<CenterIn
 			}
 
 			// 文字数チェック
-			/**
-			 *  TODO:Formクラスをシンプルにしたく、@Sizeを使わずこちらで桁数チェックを行いました。
-			 *  	 車輪の再発明なので、しないほうがいいでしょうか？
-			 */
-			if (form.getCenterName().length() > MAX_LENGTH) {
+
+			if (form.getCenterName().length() > ErrorMessage.MAX_LENGTH) {
 				context.disableDefaultConstraintViolation();
 				context.buildConstraintViolationWithTemplate(ErrorMessage.CENTER_NAME_LENGTH_ERROR_MESSAGE)
 						.addConstraintViolation();

@@ -26,9 +26,4 @@ public class CategoryInfoForm {
 	 */
 	private String categoryName;
 
-	/**
-	 * 部品アドレス
-	 */
-	private String partsAddress;
-
 }

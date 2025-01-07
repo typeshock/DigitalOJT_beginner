@@ -19,15 +19,10 @@ public class CategoryInfoFormValidatorImpl implements ConstraintValidator<Catego
 	/**
 	 * バリデーションチェック
 	 */
-
-	// 最大文字数クラス定数
-	public final int MAX_LENGTH = 20;
-
 	@Override
 	public boolean isValid(CategoryInfoForm form, ConstraintValidatorContext context) {
 
-		boolean allFieldsEmpty = StringUtils.isEmpty(form.getCategoryName()) &&
-				StringUtils.isEmpty(form.getPartsAddress());
+		boolean allFieldsEmpty = StringUtils.isEmpty(form.getCategoryName());
 
 		// すべてのフィールドが空かをチェック
 		if (allFieldsEmpty) {
@@ -49,18 +44,13 @@ public class CategoryInfoFormValidatorImpl implements ConstraintValidator<Catego
 			}
 
 			// 文字数チェック
-			/**
-			 *  TODO:Formクラスをシンプルにしたく、@Sizeを使わずこちらで桁数チェックを行いました。
-			 *  	 車輪の再発明なので、しないほうがいいでしょうか？
-			 */
-			if (form.getCategoryName().length() > MAX_LENGTH) {
+			if (form.getCategoryName().length() > ErrorMessage.MAX_LENGTH) {
 				context.disableDefaultConstraintViolation();
 				context.buildConstraintViolationWithTemplate(ErrorMessage.CENTER_NAME_LENGTH_ERROR_MESSAGE)
 						.addConstraintViolation();
 				return false;
 			}
 		}
-
 
 		// その他のバリデーションに問題なければtrueを返す
 		return true;

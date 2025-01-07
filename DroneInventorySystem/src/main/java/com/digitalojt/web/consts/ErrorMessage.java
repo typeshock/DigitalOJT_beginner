@@ -29,4 +29,10 @@ public class ErrorMessage {
 	//データベース接続失敗時のエラーメッセージ
 	public static final String DB_DISCONNECTED_ERROR_MESSAGE = "db.disconnected";
 
+	//予期せぬエラー発生時のエラーメッセージ
+	public static final String UNEXPECT_ERROR_MESSAGE = "unexpected.error";
+
+	//文字数上限設定
+	public static final int MAX_LENGTH = 20;
+
 }

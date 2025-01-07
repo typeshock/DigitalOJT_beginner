@@ -45,7 +45,6 @@ public class CategoryInfoController {
 	 * @param model
 	 * @return
 	 */
-
 	@GetMapping(UrlConsts.CATEGORY_INFO)
 	public String index(Model model) {
 
@@ -72,6 +71,10 @@ public class CategoryInfoController {
 			String errorMsg = ErrorMessage.DB_DISCONNECTED_ERROR_MESSAGE;
 			model.addAttribute("errorMsg", errorMsg);
 
+		} catch (Exception error) {
+			//全ての例外処理
+			String errorMsg = ErrorMessage.UNEXPECT_ERROR_MESSAGE;
+			model.addAttribute("errorMsg", errorMsg);
 		}
 
 		return "admin/categoryInfo/index";
@@ -87,12 +90,28 @@ public class CategoryInfoController {
 	@PostMapping(UrlConsts.CATEGORY_INFO_SEARCH)
 	public String search(Model model, @Valid CategoryInfoForm form, BindingResult bindingResult) {
 
-		// Valid項目チェック
-		if (bindingResult.hasErrors()) {
+		try {
+			// Valid項目チェック
+			if (bindingResult.hasErrors()) {
 
-			// エラーメッセージをプロパティファイルから取得
-			String errorMsg = MessageManager.getMessage(messageSource,bindingResult.getGlobalError().getDefaultMessage());
-			model.addAttribute("errorMsg", errorMsg);
+				// エラーメッセージをプロパティファイルから取得
+				String errorMsg = MessageManager.getMessage(messageSource,bindingResult.getGlobalError().getDefaultMessage());
+				model.addAttribute("errorMsg", errorMsg);
+
+				// 部品Enumをリストに変換
+				List<PartsRegion> partsRegions = Arrays.asList(PartsRegion.values());
+
+				// 部品プルダウン情報をセット
+				model.addAttribute("partsRegions", partsRegions);
+
+				return "admin/categoryInfo/index";
+			}
+
+			// 分類情報画面に表示するデータを取得
+			List<CategoryInfo> categoryInfoList = categoryInfoService.getCategoryInfoData(form.getCategoryName());
+
+			// 画面表示用に商品情報リストをセット
+			model.addAttribute("categoryInfoList", categoryInfoList);
 
 			// 部品Enumをリストに変換
 			List<PartsRegion> partsRegions = Arrays.asList(PartsRegion.values());
@@ -100,20 +119,22 @@ public class CategoryInfoController {
 			// 部品プルダウン情報をセット
 			model.addAttribute("partsRegions", partsRegions);
 
-			return "admin/categoryInfo/index";
+		} catch (NullPointerException categoryNullError) {
+			//Nullエラー処理
+			String errorMsg = ErrorMessage.LIST_EMPTY_ERROR_MESSAGE;
+			model.addAttribute("errorMsg", errorMsg);
+
+		} catch (DataAccessException categoryDbError) {
+			//データベース接続エラー処理
+			String errorMsg = ErrorMessage.DB_DISCONNECTED_ERROR_MESSAGE;
+			model.addAttribute("errorMsg", errorMsg);
+
+		} catch (Exception error) {
+			//全ての例外処理
+			String errorMsg = ErrorMessage.UNEXPECT_ERROR_MESSAGE;
+			model.addAttribute("errorMsg", errorMsg);
+
 		}
-
-		// 分類情報画面に表示するデータを取得
-		List<CategoryInfo> categoryInfoList = categoryInfoService.getCategoryInfoData(form.getCategoryName());
-
-		// 画面表示用に商品情報リストをセット
-		model.addAttribute("categoryInfoList", categoryInfoList);
-
-		// 部品Enumをリストに変換
-		List<PartsRegion> partsRegions = Arrays.asList(PartsRegion.values());
-
-		// 部品プルダウン情報をセット
-		model.addAttribute("partsRegions", partsRegions);
 
 		return "admin/categoryInfo/index";
 	}
