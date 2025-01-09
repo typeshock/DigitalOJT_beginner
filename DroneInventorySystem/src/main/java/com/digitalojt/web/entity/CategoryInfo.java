@@ -6,8 +6,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+
 /**
- * 管理者情報Entity
+ * 分類情報Entity
  * 
  * @author ueno
  *
@@ -16,21 +17,17 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class AdminInfo {
-
+public class CategoryInfo {
+	
 	/**
-	 * 管理者ID
+	 * 分類ID
 	 */
 	@Id
-	private String adminId;
-	
+	private int categoryId;
+
 	/**
-	 * 管理者名
+	 * 分類情報名
 	 */
-	private String adminName;
-	
-	/**
-	 * パスワード
-	 */
-	private String password;
+	private String categoryName;
+
 }

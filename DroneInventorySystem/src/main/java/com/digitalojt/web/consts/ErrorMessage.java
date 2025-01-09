@@ -3,7 +3,7 @@ package com.digitalojt.web.consts;
 /**
  * エラーメッセージ定数クラス
  * 
- * @author your name
+ * @author ueno
  *
  */
 public class ErrorMessage {
@@ -22,4 +22,17 @@ public class ErrorMessage {
 
 	// 文字超過に関するエラーメッセージ
 	public static final String CENTER_NAME_LENGTH_ERROR_MESSAGE = "centerName.length.wrongInput";
+	
+	// リストが空の時のエラーメッセージ
+	public static final String LIST_EMPTY_ERROR_MESSAGE = "list.empty";
+
+	//データベース接続失敗時のエラーメッセージ
+	public static final String DB_DISCONNECTED_ERROR_MESSAGE = "db.disconnected";
+
+	//予期せぬエラー発生時のエラーメッセージ
+	public static final String UNEXPECT_ERROR_MESSAGE = "unexpected.error";
+
+	//文字数上限設定
+	public static final int MAX_LENGTH = 20;
+
 }

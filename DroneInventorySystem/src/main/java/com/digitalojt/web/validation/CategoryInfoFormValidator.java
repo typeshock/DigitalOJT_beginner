@@ -11,16 +11,18 @@ import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
 /**
- * 在庫センター情報画面のバリデーションチェック インターフェース
+ * 分類情報画面のバリデーションチェック インターフェース
  * 
  * @author ueno
  */
-@Constraint(validatedBy = CenterInfoFormValidatorImpl.class)
+@Constraint(validatedBy = CategoryInfoFormValidatorImpl.class)
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface CenterInfoFormValidator {
+public @interface CategoryInfoFormValidator {
 
 	String message() default ErrorMessage.ALL_FIELDS_EMPTY_ERROR_MESSAGE;
-    Class<?>[] groups() default {};
-    Class<? extends Payload>[] payload() default {};
+
+	Class<?>[] groups() default {};
+
+	Class<? extends Payload>[] payload() default {};
 }
