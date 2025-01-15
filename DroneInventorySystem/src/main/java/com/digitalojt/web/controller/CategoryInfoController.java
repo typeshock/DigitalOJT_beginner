@@ -1,5 +1,4 @@
 package com.digitalojt.web.controller;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -63,17 +62,17 @@ public class CategoryInfoController {
 
 		} catch (NullPointerException categoryNullError) {
 			//Nullエラー処理
-			String errorMsg = ErrorMessage.LIST_EMPTY_ERROR_MESSAGE;
+			String errorMsg = MessageManager.getMessage(messageSource,ErrorMessage.LIST_EMPTY_ERROR_MESSAGE);
 			model.addAttribute("errorMsg", errorMsg);
 
 		} catch (DataAccessException categoryDbError) {
 			//データベース接続エラー処理
-			String errorMsg = ErrorMessage.DB_DISCONNECTED_ERROR_MESSAGE;
+			String errorMsg = MessageManager.getMessage(messageSource,ErrorMessage.DB_DISCONNECTED_ERROR_MESSAGE);
 			model.addAttribute("errorMsg", errorMsg);
 
 		} catch (Exception error) {
 			//全ての例外処理
-			String errorMsg = ErrorMessage.UNEXPECT_ERROR_MESSAGE;
+			String errorMsg = MessageManager.getMessage(messageSource,ErrorMessage.UNEXPECT_ERROR_MESSAGE);
 			model.addAttribute("errorMsg", errorMsg);
 		}
 
@@ -121,17 +120,17 @@ public class CategoryInfoController {
 
 		} catch (NullPointerException categoryNullError) {
 			//Nullエラー処理
-			String errorMsg = ErrorMessage.LIST_EMPTY_ERROR_MESSAGE;
+			String errorMsg = MessageManager.getMessage(messageSource,ErrorMessage.LIST_EMPTY_ERROR_MESSAGE);
 			model.addAttribute("errorMsg", errorMsg);
 
 		} catch (DataAccessException categoryDbError) {
 			//データベース接続エラー処理
-			String errorMsg = ErrorMessage.DB_DISCONNECTED_ERROR_MESSAGE;
+			String errorMsg = MessageManager.getMessage(messageSource,ErrorMessage.DB_DISCONNECTED_ERROR_MESSAGE);
 			model.addAttribute("errorMsg", errorMsg);
 
 		} catch (Exception error) {
 			//全ての例外処理
-			String errorMsg = ErrorMessage.UNEXPECT_ERROR_MESSAGE;
+			String errorMsg = MessageManager.getMessage(messageSource,ErrorMessage.UNEXPECT_ERROR_MESSAGE);
 			model.addAttribute("errorMsg", errorMsg);
 
 		}
