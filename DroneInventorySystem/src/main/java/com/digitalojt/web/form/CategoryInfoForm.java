@@ -19,11 +19,12 @@ public class CategoryInfoForm {
 	 * 分類ID
 	 */
 	@Id
-	private int category_id;
+	private int categoryId;
 
 	/**
 	 * 分類情報名
 	 */
 	private String categoryName;
+
 
 }
