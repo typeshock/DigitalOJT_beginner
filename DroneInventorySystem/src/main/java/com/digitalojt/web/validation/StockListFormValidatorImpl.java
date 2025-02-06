@@ -49,15 +49,20 @@ public class StockListFormValidatorImpl implements ConstraintValidator<StockList
 				context.buildConstraintViolationWithTemplate(ErrorMessage.CENTER_NAME_LENGTH_ERROR_MESSAGE)
 						.addConstraintViolation();
 				return false;
-			}
-			// 文字数チェック
-			if (2 < String.valueOf(form.getCategoryInfo()).length()) {
-				context.disableDefaultConstraintViolation();
-				context.buildConstraintViolationWithTemplate(ErrorMessage.CENTER_NAME_LENGTH_ERROR_MESSAGE)
-						.addConstraintViolation();
-				return false;
-			}		
+			}	
 				
+		}
+		
+		if (null !=  String.valueOf(form.getCategoryId())) {
+			
+			// 文字数チェック
+			if (99 < String.valueOf(form.getCategoryInfo()).length()) {
+				context.disableDefaultConstraintViolation();
+				context.buildConstraintViolationWithTemplate(ErrorMessage.UNEXPECT_ERROR_MESSAGE)
+						.addConstraintViolation();
+				System.out.println(String.valueOf(form.getCategoryInfo()).length());
+				return false;
+			}	
 		}
 			
 

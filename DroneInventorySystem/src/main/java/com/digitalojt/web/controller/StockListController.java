@@ -27,7 +27,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Controller
 @RequiredArgsConstructor
-public class StockListController{
+public class StockListController {
 
 	/** 在庫情報 サービス */
 	private final StockListService stockListService;
@@ -51,8 +51,8 @@ public class StockListController{
 		// 在庫情報画面に表示するデータを取得
 		List<StockInfo> stockList = stockListService.getStockListData();
 
-		for(StockInfo s : stockList) {
-		    System.out.println(s.getName());
+		for (StockInfo s : stockList) {
+			System.out.println(s.getName());
 		}
 
 		// 画面表示用に部品情報リストをセット
@@ -76,17 +76,33 @@ public class StockListController{
 	 */
 	@PostMapping(UrlConsts.STOCK_LIST_SEARCH)
 	public String search(Model model, @Valid StockListForm form, BindingResult bindingResult) {
-
+		//跡で削除：分類&名称&数字指定無しで検索を行うとエラーとなる。分類あり&名称無しだとバリデーションで引っ掛かる
+		//		// Valid項目チェック
+		//		if (bindingResult.hasErrors()) {
+		//
+		//			// エラーメッセージをプロパティファイルから取得
+		//			String errorMsg = MessageManager.getMessage(messageSource, bindingResult.getGlobalError().getDefaultMessage());
+		//			model.addAttribute("errorMsg", errorMsg);
+		//
+		//			// 分類情報画面に表示するデータを取得
+		//			List<CategoryInfo> categoryInfoList = categoryInfoService.getCategoryInfoData();
+		//
+		//			// 画面表示用に商品情報リストをセット
+		//			model.addAttribute("categoryInfoList", categoryInfoList);
+		//
+		//			return "admin/stockList/index";
+		//		}
 		// 分類情報画面に表示するデータを取得
 		List<CategoryInfo> categoryInfoList = categoryInfoService.getCategoryInfoData();
-		
+
 		// 画面表示用に商品情報リストをセット
 		model.addAttribute("categoryInfoList", categoryInfoList);
+		
 		// 在庫情報画面に表示するデータを取得
-		List<StockInfo> stockList = stockListService.getStockListData(form.getCategoryId(),form.getName());
+		List<StockInfo> stockList = stockListService.getStockListData(form.getCategoryId(), form.getName(),form.getAmount(), form.getAmountRange());
 
-		for(StockInfo s : stockList) {
-		    System.out.println(s.getName());
+		for (StockInfo s : stockList) {
+			System.out.println(s.getName());
 		}
 
 		// 画面表示用に部品情報リストをセット

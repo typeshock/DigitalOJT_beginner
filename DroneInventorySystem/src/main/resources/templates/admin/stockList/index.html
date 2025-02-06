@@ -22,7 +22,7 @@
 
 					<label for="searchTerm" class="mr-2">分類</label>
 					<select id="searchTerm" name="categoryId" class="form-control mr-2">
-						<option value="">すべて</option>
+						<option value="0" >すべて</option>
 						<option th:each="categoryInfoList : ${categoryInfoList}"
 							th:value="${categoryInfoList.categoryId}" th:text="${categoryInfoList.categoryName}">
 						</option>
@@ -32,7 +32,7 @@
 					<input type="text" id="searchTerm" name="name" class="form-control mr-2">
 
 					<label for="searchTerm" class="mr-2">個数</label>
-					<input type="number" id="searchTerm" "${stockList}" name="amount" class="form-control mr-2">
+					<input type="number" id="searchTerm" "${stockList}" name="amount" value="" class="form-control mr-2">
 					<select id="searchTerm" name="amountRange" class="form-control mr-2">
 						<option value="以上">以上</option>
 						<option value="以下">以下</option>

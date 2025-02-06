@@ -31,14 +31,22 @@ public class StockListService {
 		return repository.findAll();
 	}
 
+	
+	
 	/**
 	 * 引数に合致する分類情報と在庫情報のIDを取得
 	 * 
 	 * @param categoryId
 	 * @return
 	 */
-	public List<StockInfo> getStockListData(int categoryId,String name) {
-		return repository.findByCategoryIdAndName(categoryId, name);
+	public List<StockInfo> getStockListData(int categoryId, String name, int amount,String amountRange) {
+		if("以上" == amountRange) {
+			return repository.findByCategoryIdAndNameAndAmountOver(categoryId, name, amount,amountRange);
+		}
+		else {
+			return repository.findByCategoryIdAndNameAndAmountUnder(categoryId, name, amount,amountRange);
+		}
 	}
 
+	
 }
