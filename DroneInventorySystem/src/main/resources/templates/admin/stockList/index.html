@@ -34,8 +34,10 @@
 					<label for="searchTerm" class="mr-2">個数</label>
 					<input type="number" id="searchTerm" "${stockList}" name="amount" value="" class="form-control mr-2">
 					<select id="searchTerm" name="amountRange" class="form-control mr-2">
-						<option value="以上">以上</option>
-						<option value="以下">以下</option>
+						<option value="0" th:text="'以上'">
+						</option>
+						<option value="1" th:text="'以下'">
+						</option>
 					</select>
 
 					<button type="submit" class="btn btn-primary">検索</button>
