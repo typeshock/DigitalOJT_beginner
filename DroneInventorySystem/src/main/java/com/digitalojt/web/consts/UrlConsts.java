@@ -16,6 +16,9 @@ public class UrlConsts {
 	
 	// 在庫一覧画面
 	public static final String STOCK_LIST = "/admin/stockList";
+
+	// 在庫一覧画面リンク
+	public static final String STOCK_LIST_INDEX = "/admin/stockList/index";
 	
 	// 在庫一覧画面 検索
 	public static final String STOCK_LIST_SEARCH = "/admin/stockList/search";
@@ -25,6 +28,15 @@ public class UrlConsts {
 	
 	// 在庫センター情報画面 検索
 	public static final String CENTER_INFO_SEARCH = "/admin/centerInfo/search";
+	
+	// 在庫センター情報画面 登録画面
+	public static final String CENTER_INFO_REGISTER = "/admin/centerInfo/register";
+	
+	// 在庫センター情報画面 更新画面
+	public static final String CENTER_INFO_UPDATE = "/admin/centerInfo/update";
+	
+	// 在庫センター情報画面 削除画面
+	public static final String CENTER_INFO_DELETE = "/admin/centerInfo/delete";
 	
 	// 分類情報画面
 	public static final String CATEGORY_INFO = "/admin/categoryInfo";	

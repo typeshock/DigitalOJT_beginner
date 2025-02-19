@@ -27,7 +27,7 @@ public class StockInfo {
 	 */
 	@Id
 	private int stockId;
-	
+
 	/**
 	 * 分類ID
 	 * 関連付け
@@ -35,14 +35,12 @@ public class StockInfo {
 	@ManyToOne
 	@JoinColumn(name = "categoryId", insertable = false, updatable = false)
 	private CategoryInfo categoryInfo;
-	
-	private int categoryId;
-	
+
 	/**
 	 * 名称
 	 */
 	private String name;
-	
+
 	/**
 	 * 在庫センターID
 	 * 関連付け
@@ -65,18 +63,17 @@ public class StockInfo {
 	 * 論理削除フラグ
 	 */
 	private String deleteFlag;
-	
+
 	/**
 	 * 説明
 	 */
 	private String description;
 
-
 	/**
 	 * 更新日
 	 */
 	private Timestamp updateDate;
-	
+
 	/**
 	 * 登録日
 	 */

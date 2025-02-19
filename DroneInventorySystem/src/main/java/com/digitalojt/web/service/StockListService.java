@@ -30,7 +30,7 @@ public class StockListService {
 	public List<StockInfo> getStockListData() {
 		return repository.findAll();
 	}
-	
+
 	/**
 	 * 引数に合致する在庫一覧情報を取得
 	 * 

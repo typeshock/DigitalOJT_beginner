@@ -28,7 +28,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Controller
 @RequiredArgsConstructor
-public class StockListController {
+public class StockListController extends AbstractController{
 
 	/** 在庫情報 サービス */
 	private final StockListService stockListService;
@@ -52,11 +52,6 @@ public class StockListController {
 		// 在庫情報画面に表示するデータを取得
 		List<StockInfo> stockList = stockListService.getStockListData();
 
-		// TODO:こちら必要なコードですか？ 必要ない場合は消しましょう。
-		for (StockInfo s : stockList) {
-			System.out.println(s.getName());
-		}
-
 		// 画面表示用に部品情報リストをセット
 		model.addAttribute("stockList", stockList);
 
@@ -66,7 +61,7 @@ public class StockListController {
 		// 画面表示用に商品情報リストをセット
 		model.addAttribute("categoryInfoList", categoryInfoList);
 
-		return "admin/stockList/index";
+		return UrlConsts.STOCK_LIST_INDEX;
 	}
 
 	/**
@@ -83,8 +78,7 @@ public class StockListController {
 		if (bindingResult.hasErrors()) {
 
 			// エラーメッセージをプロパティファイルから取得
-			String errorMsg = MessageManager.getMessage(messageSource,
-					bindingResult.getGlobalError().getDefaultMessage());
+			String errorMsg = MessageManager.getMessage(messageSource,bindingResult.getGlobalError().getDefaultMessage());
 			model.addAttribute("errorMsg", errorMsg);
 
 			// 分類情報画面に表示するデータを取得
@@ -93,7 +87,7 @@ public class StockListController {
 			// 画面表示用に商品情報リストをセット
 			model.addAttribute("categoryInfoList", categoryInfoList);
 
-			return "admin/stockList/index";
+			return UrlConsts.STOCK_LIST_INDEX;
 		}
 
 		// 分類情報画面に表示するデータを取得
@@ -103,12 +97,11 @@ public class StockListController {
 		model.addAttribute("categoryInfoList", categoryInfoList);
 
 		// 在庫情報画面に表示するデータを取得
-		List<StockInfo> stockList = stockListService.getStockListData(form.getCategoryId(), form.getName(),
-				form.getAmount(), form.getAmountRange());
+		List<StockInfo> stockList = stockListService.getStockListData(form.getCategoryId(), form.getName(), form.getAmount(), form.getAmountRange());
 
 		// 画面表示用に部品情報リストをセット
 		model.addAttribute("stockList", stockList);
 
-		return "admin/stockList/index";
+		return UrlConsts.STOCK_LIST_INDEX;
 	}
 }

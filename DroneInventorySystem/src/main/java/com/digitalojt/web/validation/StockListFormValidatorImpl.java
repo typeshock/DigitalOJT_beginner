@@ -54,6 +54,7 @@ public class StockListFormValidatorImpl implements ConstraintValidator<StockList
 				setErrorMessage(context, ErrorMessage.NON_NUMERIC_INPUT_ERROR_MESSAGE);
 				return false;
 			}
+
 			// 数値の範囲をチェック
 			if (ParmCheckUtil.isWithinRange(form.getAmount())) {
 				setErrorMessage(context, ErrorMessage.UNEXPECTED_NUMBER_INPUT_ERROR_MESSAGE);
@@ -79,14 +80,12 @@ public class StockListFormValidatorImpl implements ConstraintValidator<StockList
 
 		return true;
 	}
-	
+
 	/**
 	 * すべてのフィールドが空かどうかをチェック
 	 */
 	private boolean areAllFieldsEmpty(StockListForm form) {
-		return (form.getCategoryId() == null) &&
-				(form.getName() == null || form.getName().isEmpty()) &&
-				(form.getAmount() == null);
+		return (form.getCategoryId() == null) && (form.getName() == null || form.getName().isEmpty()) && (form.getAmount() == null);
 	}
 
 	/**
@@ -94,7 +93,6 @@ public class StockListFormValidatorImpl implements ConstraintValidator<StockList
 	 */
 	private void setErrorMessage(ConstraintValidatorContext context, String errorMessage) {
 		context.disableDefaultConstraintViolation();
-		context.buildConstraintViolationWithTemplate(errorMessage)
-				.addConstraintViolation();
+		context.buildConstraintViolationWithTemplate(errorMessage).addConstraintViolation();
 	}
 }
