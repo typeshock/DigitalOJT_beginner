@@ -12,7 +12,7 @@ public class NumberConsts {
 	public static final int MAX_LENGTH = 20;
 
 	//在庫最小数値
-	public static final int MIN_NUMBER = 0;
+	public static final int MIN_NUMBER = 1;
 
 	//在庫最大数値
 	public static final int MAX_NUMBER = 10000;

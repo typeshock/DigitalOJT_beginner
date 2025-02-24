@@ -19,32 +19,39 @@ public class ParmCheckUtil {
 	 * @param val
 	 * @return
 	 */
-	public static Boolean isParameterInvalid(String val) {
-		return Arrays.stream(InvalidCharacter.values()).anyMatch(invalidChar -> val.indexOf(invalidChar.getCharacter()) >= 0);
-	}
-
-	/**
-	 * 半角数字チェック
-	 *  
-	 * @param val
-	 * @return
-	 */
-	public static Boolean isNumeric(Integer val) {
-		if (null == val) {
-			return false;
+	public static boolean isParameterInvalid(String val) {
+		if(val != null) {
+			return Arrays.stream(InvalidCharacter.values()).anyMatch(invalidChar -> val.indexOf(invalidChar.getCharacter()) >= 0);
 		}
-		return !val.toString().matches("^-?[0-9]+$");
+		return false;
 	}
 
 	/**
-	 * 数字の範囲チェック (0～99,999,999)
+	 * 数字の範囲チェック (1～10000)
 	 *  
 	 * @param val
 	 * @return
 	 */
-	public static Boolean isWithinRange(Integer val) {
-		// 0～99,999,999の範囲チェック
-		return val < NumberConsts.MIN_NUMBER || val > NumberConsts.MAX_NUMBER;
+	public static boolean isWithinRange(Integer val) {
+		if(val != null) {
+			// 1～10000の範囲チェック
+			return val < NumberConsts.MIN_NUMBER || val > NumberConsts.MAX_NUMBER;
+		}
+		return false;
+	}
+
+	/**
+	 * 以上・以下のフラグチェック
+	 *  
+	 * @param val
+	 * @return
+	 */
+	public static boolean isAmountRange(Integer val) {
+		if(val != null) {
+			// 0or1以外の数値入力チェック
+			return NumberConsts.UP_RANGE_NUMBER > val || NumberConsts.DOWN_RANGE_NUMBER < val;
+		}
+		return false;
 	}
 
 }
