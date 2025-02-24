@@ -2,7 +2,6 @@ package com.digitalojt.web.service;
 
 import java.util.List;
 
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.digitalojt.web.entity.StockInfo;
@@ -24,12 +23,13 @@ public class StockListService {
 	private final StockListRepository repository;
 
 	/**
-	 * 在庫情報をすべて取得
+	 * IDでソートした在庫情報を全件取得
 	 * 
+	 * @param stockId
 	 * @return
 	 */
 	public List<StockInfo> getStockListData() {
-		return repository.findAll(Sort.by(Sort.Direction.ASC, "stockId"));
+		return repository.findAllByOrderByStockId();
 	}
 
 	/**

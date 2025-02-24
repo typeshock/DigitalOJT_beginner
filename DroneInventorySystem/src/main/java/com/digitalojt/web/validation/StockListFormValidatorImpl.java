@@ -1,6 +1,7 @@
 package com.digitalojt.web.validation;
 
 import com.digitalojt.web.consts.ErrorMessage;
+import com.digitalojt.web.consts.NumberConsts;
 import com.digitalojt.web.form.StockListForm;
 import com.digitalojt.web.util.ParmCheckUtil;
 
@@ -26,16 +27,6 @@ public class StockListFormValidatorImpl implements ConstraintValidator<StockList
 			return false;
 		}
 
-		// 分類IDのチェック
-		if (form.getCategoryId() != null) {
-
-			//半角数字チェック
-			if (ParmCheckUtil.isNumeric(form.getCategoryId())) {
-				setErrorMessage(context, ErrorMessage.NON_NUMERIC_INPUT_ERROR_MESSAGE);
-				return false;
-			}
-		}
-
 		// 在庫名のチェック
 		if (form.getName() != null) {
 
@@ -44,30 +35,31 @@ public class StockListFormValidatorImpl implements ConstraintValidator<StockList
 				setErrorMessage(context, ErrorMessage.INVALID_INPUT_ERROR_MESSAGE);
 				return false;
 			}
+
+			// 文字数チェック
+			if (form.getName().length() > NumberConsts.MAX_LENGTH) {
+				context.disableDefaultConstraintViolation();
+				context.buildConstraintViolationWithTemplate(ErrorMessage.NAME_LENGTH_ERROR_MESSAGE).addConstraintViolation();
+				return false;
+			}
 		}
 
 		// 数量のチェック
 		if (form.getAmount() != null) {
 
-			//半角数字チェック
-			if (ParmCheckUtil.isNumeric(form.getAmount())) {
-				setErrorMessage(context, ErrorMessage.NON_NUMERIC_INPUT_ERROR_MESSAGE);
-				return false;
-			}
-
 			// 数値の範囲をチェック
 			if (ParmCheckUtil.isWithinRange(form.getAmount())) {
-				setErrorMessage(context, ErrorMessage.UNEXPECTED_NUMBER_INPUT_ERROR_MESSAGE);
+				setErrorMessage(context, ErrorMessage.NUMBER_LENGTH_ERROR_MESSAGE);
 				return false;
 			}
 		}
 
-		// 以上以下フラグのチェック
+		// 以上・以下のフラグチェック
 		if (form.getAmountRange() != null) {
 
-			//半角数字チェック
-			if (ParmCheckUtil.isNumeric(form.getAmountRange())) {
-				setErrorMessage(context, ErrorMessage.NON_NUMERIC_INPUT_ERROR_MESSAGE);
+			// 数値の範囲をチェック
+			if (ParmCheckUtil.isAmountRange(form.getAmountRange())) {
+				setErrorMessage(context, ErrorMessage.UNEXPECTED_NUMBER_INPUT_ERROR_MESSAGE);
 				return false;
 			}
 		}

@@ -3,7 +3,6 @@ package com.digitalojt.web.controller;
 import java.util.List;
 
 import org.springframework.context.MessageSource;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -67,11 +66,6 @@ public class StockListController extends AbstractController {
 			String errorMsg = MessageManager.getMessage(messageSource, ErrorMessage.LIST_EMPTY_ERROR_MESSAGE);
 			model.addAttribute("errorMsg", errorMsg);
 
-		} catch (DataAccessException categoryDbError) {
-			//データベース接続エラー処理
-			String errorMsg = MessageManager.getMessage(messageSource, ErrorMessage.DB_DISCONNECTED_ERROR_MESSAGE);
-			model.addAttribute("errorMsg", errorMsg);
-
 		} catch (Exception error) {
 			//全ての例外処理
 			String errorMsg = MessageManager.getMessage(messageSource, ErrorMessage.UNEXPECT_ERROR_MESSAGE);
@@ -128,11 +122,6 @@ public class StockListController extends AbstractController {
 		} catch (NullPointerException categoryNullError) {
 			//Nullエラー処理
 			String errorMsg = MessageManager.getMessage(messageSource, ErrorMessage.LIST_EMPTY_ERROR_MESSAGE);
-			model.addAttribute("errorMsg", errorMsg);
-
-		} catch (DataAccessException categoryDbError) {
-			//データベース接続エラー処理
-			String errorMsg = MessageManager.getMessage(messageSource, ErrorMessage.DB_DISCONNECTED_ERROR_MESSAGE);
 			model.addAttribute("errorMsg", errorMsg);
 
 		} catch (Exception error) {

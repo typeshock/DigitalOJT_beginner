@@ -18,6 +18,14 @@ import com.digitalojt.web.entity.StockInfo;
 public interface StockListRepository extends JpaRepository<StockInfo, Integer> {
 
 	/**
+	 * IDでソートした在庫情報を全件取得
+	 * 
+	 * @param stockId
+	 * @return paramで検索した結果
+	 */
+	List<StockInfo> findAllByOrderByStockId();
+	
+	/**
 	 * 引数に合致する在庫情報を取得
 	 * 
 	 * @param categoryId

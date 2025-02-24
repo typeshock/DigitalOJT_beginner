@@ -1,20 +1,26 @@
 package com.digitalojt.web.consts;
 
 /**
- * 数字定数クラス
+ * 入力値制限用数字定数クラス
  * 
  * @author ueno
  *
  */
 public class NumberConsts {
-	
-	//文字数上限設定
+
+	//検索文字数上限設定
 	public static final int MAX_LENGTH = 20;
-	
-	//最小数値
+
+	//在庫最小数値
 	public static final int MIN_NUMBER = 0;
-	
-	//最大数値
-	public static final int MAX_NUMBER = 99999999;
-	
+
+	//在庫最大数値
+	public static final int MAX_NUMBER = 10000;
+
+	//数値範囲 以上の設定
+	public static final int UP_RANGE_NUMBER = 0;
+
+	//数値範囲 以下の設定
+	public static final int DOWN_RANGE_NUMBER = 1;
+
 }
