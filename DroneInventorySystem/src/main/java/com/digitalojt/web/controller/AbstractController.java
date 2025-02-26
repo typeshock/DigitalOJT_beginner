@@ -15,7 +15,7 @@ import com.digitalojt.web.util.MessageManager;
  * @author ueno
  *
  */
-public class AbstractController {
+public abstract class AbstractController {
 
     // ロガーは各コントローラで使えるように共通化
     private final Logger logger = LoggerFactory.getLogger(this.getClass());

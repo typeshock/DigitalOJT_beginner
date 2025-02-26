@@ -14,8 +14,8 @@ public class ErrorMessage {
 	// すべての項目が空の場合のエラーメッセージ
 	public static final String ALL_FIELDS_EMPTY_ERROR_MESSAGE = "allField.empty";
 
-	//項目が空の場合のエラーメッセージ
-	public static final String FIELDS_EMPTY_ERROR_MESSAGE = "Field.empty";
+	// 項目が空の場合のエラーメッセージ
+	public static final String FIELDS_EMPTY_ERROR_MESSAGE = "field.empty";
 
 	// 空文字検索に関するエラーメッセージ
 	public static final String UNEXPECTED_INPUT_ERROR_MESSAGE = "unexpected.input";

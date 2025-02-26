@@ -3,7 +3,7 @@ package com.digitalojt.web.util;
 import java.util.Arrays;
 
 import com.digitalojt.web.consts.InvalidCharacter;
-import com.digitalojt.web.consts.NumberConsts;
+import com.digitalojt.web.consts.NumberValidConsts;
 
 /**
  * パラメーターチェックに関する処理を行うクラス
@@ -35,8 +35,9 @@ public class ParmCheckUtil {
 	public static boolean isWithinRange(Integer val) {
 		if(val != null) {
 			// 1～10000の範囲チェック
-			return val < NumberConsts.MIN_NUMBER || val > NumberConsts.MAX_NUMBER;
+			return val < NumberValidConsts.MIN_NUMBER || val > NumberValidConsts.MAX_NUMBER;
 		}
+		//valがnullの時にfalseを返す
 		return false;
 	}
 
@@ -49,8 +50,9 @@ public class ParmCheckUtil {
 	public static boolean isAmountRange(Integer val) {
 		if(val != null) {
 			// 0or1以外の数値入力チェック
-			return NumberConsts.UP_RANGE_NUMBER > val || NumberConsts.DOWN_RANGE_NUMBER < val;
+			return NumberValidConsts.UP_RANGE_NUMBER > val || NumberValidConsts.DOWN_RANGE_NUMBER < val;
 		}
+		//valがnullの時にfalseを返す
 		return false;
 	}
 

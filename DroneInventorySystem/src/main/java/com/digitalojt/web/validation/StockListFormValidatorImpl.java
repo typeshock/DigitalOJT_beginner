@@ -1,7 +1,7 @@
 package com.digitalojt.web.validation;
 
 import com.digitalojt.web.consts.ErrorMessage;
-import com.digitalojt.web.consts.NumberConsts;
+import com.digitalojt.web.consts.NumberValidConsts;
 import com.digitalojt.web.form.StockListForm;
 import com.digitalojt.web.util.ParmCheckUtil;
 
@@ -37,7 +37,7 @@ public class StockListFormValidatorImpl implements ConstraintValidator<StockList
 			}
 
 			// 文字数チェック
-			if (form.getName().length() > NumberConsts.MAX_LENGTH) {
+			if (form.getName().length() > NumberValidConsts.MAX_LENGTH) {
 				context.disableDefaultConstraintViolation();
 				context.buildConstraintViolationWithTemplate(ErrorMessage.NAME_LENGTH_ERROR_MESSAGE).addConstraintViolation();
 				return false;

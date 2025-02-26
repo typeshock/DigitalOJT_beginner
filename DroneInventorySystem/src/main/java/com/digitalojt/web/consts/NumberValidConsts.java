@@ -6,7 +6,7 @@ package com.digitalojt.web.consts;
  * @author ueno
  *
  */
-public class NumberConsts {
+public class NumberValidConsts {
 
 	//検索文字数上限設定
 	public static final int MAX_LENGTH = 20;
