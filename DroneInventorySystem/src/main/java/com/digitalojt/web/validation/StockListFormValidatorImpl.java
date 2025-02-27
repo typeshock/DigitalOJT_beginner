@@ -57,7 +57,7 @@ public class StockListFormValidatorImpl implements ConstraintValidator<StockList
 		// 以上・以下のフラグチェック
 		if (form.getAmountRange() != null) {
 
-			// 数値の範囲をチェック
+			// フラグ判定の数値をチェック
 			if (ParmCheckUtil.isAmountRange(form.getAmountRange())) {
 				setErrorMessage(context, ErrorMessage.UNEXPECTED_NUMBER_INPUT_ERROR_MESSAGE);
 				return false;

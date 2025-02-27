@@ -27,18 +27,18 @@ public class ParmCheckUtil {
 	}
 
 	/**
-	 * 数字の範囲チェック (1～10000)
+	 * 数字の範囲チェック (MIN_NUMBERからMAX_NUMBERの範囲の値)
 	 *  
 	 * @param val
 	 * @return
 	 */
 	public static boolean isWithinRange(Integer val) {
 		if(val != null) {
-			// 1～10000の範囲チェック
+			// MIN_NUMBERより小さい値、またはMAX_NUMBERより大きい値の時、trueを返す
 			return val < NumberValidConsts.MIN_NUMBER || val > NumberValidConsts.MAX_NUMBER;
 		}
-		//valがnullの時にfalseを返す
-		return false;
+		//valがnullの時にtrueを返す
+		return true;
 	}
 
 	/**
@@ -49,11 +49,11 @@ public class ParmCheckUtil {
 	 */
 	public static boolean isAmountRange(Integer val) {
 		if(val != null) {
-			// 0or1以外の数値入力チェック
+			// DOWN_RANGE_NUMBERより小さい値、またはUP_RANGE_NUMBERより大きい値の時、trueを返す
 			return NumberValidConsts.UP_RANGE_NUMBER > val || NumberValidConsts.DOWN_RANGE_NUMBER < val;
 		}
-		//valがnullの時にfalseを返す
-		return false;
+		//valがnullの時にtrueを返す
+		return true;
 	}
 
 }
