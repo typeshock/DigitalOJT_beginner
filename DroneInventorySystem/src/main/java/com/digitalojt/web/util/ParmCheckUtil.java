@@ -37,7 +37,7 @@ public class ParmCheckUtil {
 			// MIN_NUMBERより小さい値、またはMAX_NUMBERより大きい値の時、trueを返す
 			return val < NumberValidConsts.MIN_NUMBER || val > NumberValidConsts.MAX_NUMBER;
 		}
-		//valがnullの時にtrueを返す
+		//valがnullの時にエラー判定を示すtrueを返す
 		return true;
 	}
 
@@ -52,7 +52,7 @@ public class ParmCheckUtil {
 			// DOWN_RANGE_NUMBERより小さい値、またはUP_RANGE_NUMBERより大きい値の時、trueを返す
 			return NumberValidConsts.UP_RANGE_NUMBER > val || NumberValidConsts.DOWN_RANGE_NUMBER < val;
 		}
-		//valがnullの時にtrueを返す
+		//valがnullの時にエラー判定を示すtrueを返す
 		return true;
 	}
 
