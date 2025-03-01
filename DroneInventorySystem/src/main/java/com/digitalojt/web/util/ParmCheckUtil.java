@@ -34,7 +34,7 @@ public class ParmCheckUtil {
 	 */
 	public static boolean isWithinRange(Integer val) {
 		if(val != null) {
-			// MIN_NUMBERより小さい値、またはMAX_NUMBERより大きい値の時、trueを返す
+			// MIN_NUMBERより小さい値、またはMAX_NUMBERより大きい値の時、エラー判定を示すtrueを返す
 			return val < NumberValidConsts.MIN_NUMBER || val > NumberValidConsts.MAX_NUMBER;
 		}
 		//valがnullの時にエラー判定を示すtrueを返す
@@ -49,7 +49,7 @@ public class ParmCheckUtil {
 	 */
 	public static boolean isAmountRange(Integer val) {
 		if(val != null) {
-			// DOWN_RANGE_NUMBERより小さい値、またはUP_RANGE_NUMBERより大きい値の時、trueを返す
+			// DOWN_RANGE_NUMBERより小さい値、またはUP_RANGE_NUMBERより大きい値の時、エラー判定を示すtrueを返す
 			return NumberValidConsts.UP_RANGE_NUMBER > val || NumberValidConsts.DOWN_RANGE_NUMBER < val;
 		}
 		//valがnullの時にエラー判定を示すtrueを返す
