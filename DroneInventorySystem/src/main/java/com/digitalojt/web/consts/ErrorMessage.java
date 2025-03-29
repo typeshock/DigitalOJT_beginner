@@ -47,6 +47,9 @@ public class ErrorMessage {
 	//文字超過に関するエラーメッセージ
 	public static final String NAME_LENGTH_ERROR_MESSAGE = "name.length.wrongInput";
 
+	//住所の文字超過に関するエラーメッセージ
+	public static final String ADDLESS_LENGTH_ERROR_MESSAGE = "address.length.wrongInput";
+
 	//入力数値の範囲に関するエラーメッセージ
 	public static final String NUMBER_LENGTH_ERROR_MESSAGE = "number.length.wrongInput";
 
@@ -55,5 +58,26 @@ public class ErrorMessage {
 
 	// 在庫が存在する在庫センターを削除しようとしたときに関するエラーメッセージ
 	public static final String CANNOT_DELETE_CENTER_ERROR_MESSAGE = "cannot.delete.center";
+
+	// 在庫センター登録・更新画面で必須項目が全て入力されていないときに関するエラーメッセージ
+	public static final String DATA_FILED_EMPTY_ERROR_MESSAGE = "centerInfo.date.fieldEmpty";
+
+	// 在庫センター登録・更新画面で最大容量に数字以外が入力されているときに関するエラーメッセージ
+	public static final String MAX_STORAGE_ERROR_MESSAGE = "centerInfo.date.maxStorageCapacity.wrongInput";
+
+	// 在庫センター登録・更新画面で現在容量に数字以外が入力されているときに関するエラーメッセージ
+	public static final String CURRENT_STORAGE_ERROR_MESSAGE = "centerInfo.date.currentStorageCapacity.wrongInput";
+
+	// 在庫センター登録・更新画面で現在容量が最大容量を上回る数値が入力されたときに関するエラーメッセージ
+	public static final String OVER_STORAGE_ERROR_MESSAGE = "centerInfo.date.overStorageCapacity.wrongInput";
+
+	// 在庫センター登録・更新画面でデータ登録・更新時にトランザクションエラーが起きたときに関するエラーメッセージ
+	public static final String TRANSACTION_ERROR_MESSAGE = "centerInfoRegister.transactionError";
+	
+	// 在庫センター登録・更新画面で入力されたデータの形式が正しくないときに関するエラーメッセージ
+	public static final String FORMAT_ERROR_MESSAGE = "centerInfo.data.format.wrongInput";
+
+	// 在庫センター登録・更新画面で数字以外入力されたときに関するエラーメッセージ
+	public static final String NUMBER_INPUT_ERROR_MESSAGE = "centerInfo.data.number.wrongInput";
 
 }

@@ -24,10 +24,19 @@ public class UrlConsts {
 	public static final String STOCK_LIST_SEARCH = "/admin/stockList/search";
 	
 	// 在庫センター情報画面
-	public static final String  CENTER_INFO = "/admin/centerInfo";
+	public static final String CENTER_INFO = "/admin/centerInfo";
 	
 	// 在庫センター情報画面 検索
 	public static final String CENTER_INFO_SEARCH = "/admin/centerInfo/search";
+	
+	// 在庫センター情報画面 登録画面
+	public static final String CENTER_INFO_REGISTER = "/admin/centerInfo/register";
+	
+	// 在庫センター情報画面 更新画面
+	public static final String CENTER_INFO_UPDATE = "/admin/centerInfo/update";
+	
+	// 在庫センター情報画面 削除画面
+	public static final String CENTER_INFO_DELETE = "/admin/centerInfo/delete";
 	
 	// 分類情報画面
 	public static final String CATEGORY_INFO = "/admin/categoryInfo";	

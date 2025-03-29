@@ -2,6 +2,8 @@ package com.digitalojt.web.entity;
 
 import java.sql.Timestamp;
 
+import org.springframework.data.annotation.CreatedDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
@@ -20,6 +22,7 @@ import lombok.Setter;
 @Entity
 public class CenterInfo {
 
+
 	/**
 	 * センターID
 	 */
@@ -30,6 +33,11 @@ public class CenterInfo {
 	 * センター名
 	 */
 	private String centerName;
+	
+	/**
+	 * 郵便番号
+	 */
+	private String postCode;
 	
 	/**
 	 * 住所
@@ -49,7 +57,7 @@ public class CenterInfo {
 	/**
 	 * 未使用フラグ
 	 */
-	private int operationalStatus;
+	private String operationalStatus;
 	
 	/**
 	 * 最大容量
@@ -67,12 +75,21 @@ public class CenterInfo {
 	private String deleteFlag;
 
 	/**
+	 * 備考
+	 */
+	private String notes;
+
+	/**
 	 * 更新日
 	 */
+	@CreatedDate
 	private Timestamp updateDate;
 
 	/**
 	 * 登録日
 	 */
+	@CreatedDate
 	private Timestamp createDate;
+
+
 }
