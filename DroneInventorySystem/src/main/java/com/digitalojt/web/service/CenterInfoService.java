@@ -1,10 +1,14 @@
 package com.digitalojt.web.service;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.digitalojt.web.entity.CenterInfo;
+import com.digitalojt.web.form.CenterInfoForm;
 import com.digitalojt.web.repository.CenterInfoRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -41,6 +45,50 @@ public class CenterInfoService {
 	 * @return
 	 */
 	public List<CenterInfo> getCenterInfoData(String centerName, String region) {
-		return repository.findByCenterNameAndRegionAndStorageCapacity(centerName, region);
+		return repository.findByCenterNameAndRegion(centerName, region);
+	}
+	
+	/**
+	 * 在庫センター情報を登録
+	 * 
+	 * @param centerName
+	 * @param postCode
+	 * @param address
+	 * @param phoneNumber
+	 * @param managerName
+	 * @param operationalStatus
+	 * @param maxStorageCapacity
+	 * @param currentStorageCapacity
+	 * @param deleteFlag
+	 * @param notes
+	 * @return
+	 */
+	public CenterInfo getCenterInfoData(CenterInfoForm form,CenterInfo entity) {
+		entity.setCenterName(form.getCenterName());
+		entity.setPostCode(form.getPostCode());
+		entity.setAddress(form.getAddress());
+		entity.setPhoneNumber(form.getPhoneNumber());
+		entity.setManagerName(form.getManagerName());
+		entity.setOperationalStatus(form.getOperationalStatus());
+		entity.setMaxStorageCapacity(form.getMaxStorageCapacity());
+		entity.setCurrentStorageCapacity(form.getCurrentStorageCapacity());
+	    entity.setDeleteFlag(form.getDeleteFlagRegister());
+	    entity.setNotes(form.getNotes());
+	    Timestamp currentTimestamp = Timestamp.valueOf(LocalDateTime.now());
+	    entity.setCreateDate(currentTimestamp);
+	    entity.setUpdateDate(currentTimestamp); 
+	    
+	    return entity;
+	}
+	
+	/**
+	 * 在庫センター情報を登録
+	 * 
+	 * @param entity
+	 * @return
+	 */
+	@Transactional
+	public void saveCenterInfoData(CenterInfo entity) {
+        repository.save(entity); 
 	}
 }
