@@ -47,7 +47,7 @@ public class CenterInfoService {
 	public List<CenterInfo> getCenterInfoData(String centerName, String region) {
 		return repository.findByCenterNameAndRegion(centerName, region);
 	}
-	
+
 	/**
 	 * 在庫センター情報を登録
 	 * 
@@ -63,7 +63,13 @@ public class CenterInfoService {
 	 * @param notes
 	 * @return
 	 */
-	public CenterInfo getCenterInfoData(CenterInfoForm form,CenterInfo entity) {
+	@Transactional
+	public void saveCenterInfoData(CenterInfoForm form) {
+
+		// インスタンス化
+		CenterInfo entity = new CenterInfo();
+
+		//各データを格納する
 		entity.setCenterName(form.getCenterName());
 		entity.setPostCode(form.getPostCode());
 		entity.setAddress(form.getAddress());
@@ -76,9 +82,10 @@ public class CenterInfoService {
 	    entity.setNotes(form.getNotes());
 	    Timestamp currentTimestamp = Timestamp.valueOf(LocalDateTime.now());
 	    entity.setCreateDate(currentTimestamp);
-	    entity.setUpdateDate(currentTimestamp); 
-	    
-	    return entity;
+	    entity.setUpdateDate(currentTimestamp);
+
+	    //データの登録を実行
+        repository.save(entity); 
 	}
 	
 	/**
