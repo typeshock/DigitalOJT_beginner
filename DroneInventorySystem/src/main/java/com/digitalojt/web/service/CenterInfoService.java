@@ -39,9 +39,7 @@ public class CenterInfoService {
 	 * 引数に合致する在庫センター情報を取得
 	 * 
 	 * @param centerName
-	 * @param region 
-	 * @param storageCapacityFrom 
-	 * @param storageCapacityTo
+	 * @param region
 	 * @return
 	 */
 	public List<CenterInfo> getCenterInfoData(String centerName, String region) {
@@ -61,6 +59,8 @@ public class CenterInfoService {
 	 * @param currentStorageCapacity
 	 * @param deleteFlag
 	 * @param notes
+	 * @param createDate
+	 * @param updateDate
 	 * @return
 	 */
 	@Transactional
@@ -78,14 +78,14 @@ public class CenterInfoService {
 		entity.setOperationalStatus(form.getOperationalStatus());
 		entity.setMaxStorageCapacity(form.getMaxStorageCapacity());
 		entity.setCurrentStorageCapacity(form.getCurrentStorageCapacity());
-	    entity.setDeleteFlag(form.getDeleteFlagRegister());
-	    entity.setNotes(form.getNotes());
-	    Timestamp currentTimestamp = Timestamp.valueOf(LocalDateTime.now());
-	    entity.setCreateDate(currentTimestamp);
-	    entity.setUpdateDate(currentTimestamp);
+		entity.setDeleteFlag(form.getDeleteFlagRegister());
+		entity.setNotes(form.getNotes());
+		Timestamp currentTimestamp = Timestamp.valueOf(LocalDateTime.now());
+		entity.setCreateDate(currentTimestamp);
+		entity.setUpdateDate(currentTimestamp);
 
-	    //データの登録を実行
-        repository.save(entity); 
+		//データの登録を実行
+		repository.save(entity); 
 	}
 	
 	/**

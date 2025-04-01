@@ -144,18 +144,8 @@ public class CenterInfoController extends AbstractController {
 	 * @return
 	 */
 	@GetMapping(UrlConsts.CENTER_INFO_REGISTER)
-	public String getRegister(Model model) {
+	public String getRegister() {
 
-		try {
-
-			return UrlConsts.CENTER_INFO_REGISTER;
-
-		}catch (Exception error) {
-			//全ての例外処理
-			String errorMsg = MessageManager.getMessage(messageSource, ErrorMessage.UNEXPECT_ERROR_MESSAGE);
-			model.addAttribute("errorMsg", errorMsg);
-
-		}
 		return UrlConsts.CENTER_INFO_REGISTER;
 	}
 
