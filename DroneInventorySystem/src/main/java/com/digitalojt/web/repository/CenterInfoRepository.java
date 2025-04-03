@@ -27,8 +27,9 @@ public interface CenterInfoRepository extends JpaRepository<CenterInfo, Integer>
 	@Query("SELECT s FROM CenterInfo s WHERE " +
 			"(:centerName = '' OR s.centerName LIKE %:centerName%) AND " +
 			"(:region = '' OR s.address LIKE %:region%) AND " +
-			"(s.operationalStatus = 0)")
-	List<CenterInfo> findByCenterNameAndRegionAndStorageCapacity(
+			"(s.operationalStatus = '0')")
+	List<CenterInfo> findByCenterNameAndRegion(
 			String centerName,
 			String region);
+
 }
