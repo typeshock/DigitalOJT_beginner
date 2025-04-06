@@ -71,9 +71,12 @@ public class ErrorMessage {
 	// 在庫センター登録・更新画面で現在容量が最大容量を上回る数値が入力されたときに関するエラーメッセージ
 	public static final String OVER_STORAGE_ERROR_MESSAGE = "centerInfo.date.overStorageCapacity.wrongInput";
 
-	// 在庫センター登録・更新画面でデータ登録・更新時にトランザクションエラーが起きたときに関するエラーメッセージ
+	// 在庫センター登録画面でデータ登録時にトランザクションエラーが起きたときに関するエラーメッセージ
 	public static final String TRANSACTION_ERROR_MESSAGE = "centerInfoRegister.transactionError";
-	
+
+	// 在庫センター更新画面でデータ更新時にトランザクションエラーが起きたときに関するエラーメッセージ
+	public static final String UPDATE_ERROR_MESSAGE = "centerInfoUpdate.transactionError";
+
 	// 在庫センター登録・更新画面で入力されたデータの形式が正しくないときに関するエラーメッセージ
 	public static final String FORMAT_ERROR_MESSAGE = "centerInfo.data.format.wrongInput";
 

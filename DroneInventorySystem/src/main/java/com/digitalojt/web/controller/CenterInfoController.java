@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -147,6 +149,7 @@ public class CenterInfoController extends AbstractController {
 	public String getRegister() {
 
 		return UrlConsts.CENTER_INFO_REGISTER;
+
 	}
 
 	/**
@@ -164,10 +167,9 @@ public class CenterInfoController extends AbstractController {
 			if (bindingResult.hasErrors()) {
 
 				// エラーメッセージをプロパティファイルから取得
-				String errorMsg = MessageManager.getMessage(messageSource, bindingResult.getGlobalError().getDefaultMessage());
-				model.addAttribute("errorMsg", errorMsg);
+				redirectAttributes.addFlashAttribute("errorMsg", MessageManager.getMessage(messageSource, bindingResult.getGlobalError().getDefaultMessage()));
 
-				return UrlConsts.CENTER_INFO_REGISTER;
+				return "redirect:" + UrlConsts.CENTER_INFO_REGISTER;
 
 			}
 
@@ -196,4 +198,72 @@ public class CenterInfoController extends AbstractController {
 
 	}
 
+	/**
+	 *更新画面表示
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@GetMapping(UrlConsts.CENTER_INFO_UPDATE+"/{centerId}")
+	public String getUpdate(Model model, @PathVariable("centerId") Integer centerId) {
+
+		try {
+			// 在庫センター情報画面に表示するデータを取得
+			CenterInfo centerInfoList = centerInfoService.getCenterInfoData(centerId);
+
+			// 画面表示用に商品情報リストをセット
+			model.addAttribute("centerInfoList", centerInfoList);
+
+			return UrlConsts.CENTER_INFO_UPDATE;
+
+		} catch (Exception error) {
+			//全ての例外処理
+			String errorMsg = MessageManager.getMessage(messageSource, ErrorMessage.UNEXPECT_ERROR_MESSAGE);
+			model.addAttribute("errorMsg", errorMsg);
+			return UrlConsts.CENTER_INFO_UPDATE;
+		}
+	}
+
+	/**
+	 * 更新処理
+	 * 
+	 * @param model
+	 * @param form
+	 * @return
+	 */
+	@PatchMapping(UrlConsts.CENTER_INFO_UPDATE)
+	public String postUpdate(Model model, @Valid CenterInfoForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+
+		try {
+			// Valid項目チェック
+			if (bindingResult.hasErrors()) {
+
+				// エラーメッセージをプロパティファイルから取得
+				redirectAttributes.addFlashAttribute("errorMsg", MessageManager.getMessage(messageSource, bindingResult.getGlobalError().getDefaultMessage()));
+
+				return "redirect:" + UrlConsts.CENTER_INFO_UPDATE+"/"+form.getCenterId();
+
+			}
+
+			// データの更新処理を実行する
+			centerInfoService.updateCenterInfoData(form);
+
+			// 更新成功時のメッセージを設定する
+			redirectAttributes.addFlashAttribute("systemMsg", MessageManager.getMessage(messageSource, SystemMessage.CENTERINFO_UPDATE_SUCCESS));
+
+			// 更新完了時に在庫センター情報画面にリダイレクト
+			return "redirect:" + UrlConsts.CENTER_INFO;
+
+		} catch (NullPointerException categoryNullError) {
+			//Nullエラー処理
+			redirectAttributes.addFlashAttribute("errorMsg", MessageManager.getMessage(messageSource, ErrorMessage.LIST_EMPTY_ERROR_MESSAGE));
+			return "redirect:" + UrlConsts.CENTER_INFO_UPDATE+"/"+form.getCenterId();
+
+		} catch (Exception error) {
+			//全ての例外処理
+			redirectAttributes.addFlashAttribute("errorMsg", MessageManager.getMessage(messageSource, ErrorMessage.UNEXPECT_ERROR_MESSAGE));
+			return "redirect:" + UrlConsts.CENTER_INFO_UPDATE+"/"+form.getCenterId();
+		} 
+
+	}
 }
