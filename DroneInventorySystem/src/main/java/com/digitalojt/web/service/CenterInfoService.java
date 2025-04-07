@@ -87,15 +87,56 @@ public class CenterInfoService {
 		//データの登録を実行
 		repository.save(entity); 
 	}
-	
+
 	/**
-	 * 在庫センター情報を登録
+	 * 引数に合致する在庫センター情報を取得
 	 * 
-	 * @param entity
+	 * @param centerId
+	 * @return
+	 */
+	public CenterInfo getCenterInfoData(Integer centerId) {
+		return repository.findByCenterId(centerId);
+	}
+
+	/**
+	 * 在庫センター情報を更新
+	 * 
+	 * @param centerName
+	 * @param postCode
+	 * @param address
+	 * @param phoneNumber
+	 * @param managerName
+	 * @param operationalStatus
+	 * @param maxStorageCapacity
+	 * @param currentStorageCapacity
+	 * @param deleteFlag
+	 * @param notes
+	 * @param createDate
+	 * @param updateDate
 	 * @return
 	 */
 	@Transactional
-	public void saveCenterInfoData(CenterInfo entity) {
-        repository.save(entity); 
+	public void updateCenterInfoData(CenterInfoForm form) {
+
+		// インスタンス化
+		CenterInfo entity = new CenterInfo();
+
+		//各データを格納する
+		entity.setCenterId(form.getCenterId());
+		entity.setCenterName(form.getCenterName());
+		entity.setPostCode(form.getPostCode());
+		entity.setAddress(form.getAddress());
+		entity.setPhoneNumber(form.getPhoneNumber());
+		entity.setManagerName(form.getManagerName());
+		entity.setOperationalStatus(form.getOperationalStatus());
+		entity.setMaxStorageCapacity(form.getMaxStorageCapacity());
+		entity.setCurrentStorageCapacity(form.getCurrentStorageCapacity());
+		entity.setDeleteFlag(form.getDeleteFlagRegister());
+		entity.setNotes(form.getNotes());
+		Timestamp currentTimestamp = Timestamp.valueOf(LocalDateTime.now());
+		entity.setUpdateDate(currentTimestamp);
+
+		//データの更新を実行
+		repository.save(entity);
 	}
 }
