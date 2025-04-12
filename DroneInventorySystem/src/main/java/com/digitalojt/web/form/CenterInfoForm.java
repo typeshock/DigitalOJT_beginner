@@ -2,6 +2,7 @@ package com.digitalojt.web.form;
 
 import java.sql.Timestamp;
 
+import com.digitalojt.web.consts.NumberValidConsts;
 import com.digitalojt.web.validation.CenterInfoFormValidator;
 
 import jakarta.persistence.Id;
@@ -79,45 +80,14 @@ public class CenterInfoForm {
 	private String deleteFlag;
 
 	/**
-	 * 論理削除フラグ登録時の初期値
-	 */
-	private String deleteFlagRegisterNumber = "0";
-
-	/**
-	 * 容量(From)
-	 */
-	private Integer storageCapacityFrom;
-
-	/**
-	 * 容量(To)
-	 */
-	private Integer storageCapacityTo;
-
-	// 容量(From)初期値
-	final int INITIAL_CAPACITY_FROM = 10;
-
-	/**
 	 * 作成日時
 	 */
 	private Timestamp createDate;
-	
+
 	/**
 	 * 更新日時
 	 */
 	private Timestamp updateDate;
-
-	/**
-	 * 容量(From)のデフォルト値（10）を設定
-	 * 
-	 * @return
-	 */
-	public Integer getStorageCapacityFrom() {
-
-		if (storageCapacityTo != null && storageCapacityFrom == null) {
-			return INITIAL_CAPACITY_FROM;
-		}
-		return storageCapacityFrom;
-	}
 
 	/**
 	 * 論理削除フラグを未削除（0）に設定
@@ -126,7 +96,18 @@ public class CenterInfoForm {
 	 */
 	public String getDeleteFlagRegister() {
 
-		deleteFlag = deleteFlagRegisterNumber;
+		deleteFlag = NumberValidConsts.DELETE_FLAG_REGISTER_NUMBER;
+		return deleteFlag;
+	}
+
+	/**
+	 * 論理削除フラグを削除（1）に設定
+	 * 
+	 * @return
+	 */
+	public String getDeleteFlagDeleter() {
+
+		deleteFlag = NumberValidConsts.DELETE_FLAG_DELETE_NUMBER;
 		return deleteFlag;
 	}
 

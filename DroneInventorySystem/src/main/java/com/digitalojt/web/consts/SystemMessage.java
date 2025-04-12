@@ -14,4 +14,7 @@ public class SystemMessage {
 	// センター情報更新画面でデータの登録に成功した時のメッセージ
 	public static final String CENTERINFO_UPDATE_SUCCESS = "centerInfoUpdate.success";
 
+	// センター情報更新画面でデータの登録に成功した時のメッセージ
+	public static final String CENTERINFO_DELETE_SUCCESS = "centerInfoDelete.success";
+
 }

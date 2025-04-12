@@ -120,9 +120,11 @@ public class CenterInfoService {
 
 		// インスタンス化
 		CenterInfo entity = new CenterInfo();
+		
+		//データベースの在庫センター情報を取得
+		entity = repository.findByCenterId(form.getCenterId());
 
 		//各データを格納する
-		entity.setCenterId(form.getCenterId());
 		entity.setCenterName(form.getCenterName());
 		entity.setPostCode(form.getPostCode());
 		entity.setAddress(form.getAddress());
@@ -137,6 +139,37 @@ public class CenterInfoService {
 		entity.setUpdateDate(currentTimestamp);
 
 		//データの更新を実行
+		repository.save(entity);
+	}
+
+	/**
+	 * 在庫センター情報を削除
+	 * 
+	 * @param deleteFlag
+	 * @param updateDate
+	 * @return
+	 */
+	@Transactional
+	public void deleteCenterInfoData(CenterInfoForm form) {
+
+		// インスタンス化
+		CenterInfo entity = new CenterInfo();
+
+		//データベースの在庫センター情報を取得
+		entity = repository.findByCenterId(form.getCenterId());
+		
+		//在庫一覧とリンクしているセンター名があるか確認
+		if(repository.count(form.getCenterId()) > 0) {
+			//在庫一覧とリンクしているセンター名がある場合、エラーを発生させて処理を中断する
+			throw new Error();
+		}
+
+		//各データを格納する
+		entity.setDeleteFlag(form.getDeleteFlagDeleter());
+		Timestamp currentTimestamp = Timestamp.valueOf(LocalDateTime.now());
+		entity.setUpdateDate(currentTimestamp);
+
+		//データの更新(論理削除)を実行
 		repository.save(entity);
 	}
 }
