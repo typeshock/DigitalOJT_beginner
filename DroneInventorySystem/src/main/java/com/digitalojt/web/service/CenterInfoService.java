@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.digitalojt.web.consts.NumberValidConsts;
 import com.digitalojt.web.entity.CenterInfo;
 import com.digitalojt.web.form.CenterInfoForm;
 import com.digitalojt.web.repository.CenterInfoRepository;
@@ -78,7 +79,7 @@ public class CenterInfoService {
 		entity.setOperationalStatus(form.getOperationalStatus());
 		entity.setMaxStorageCapacity(form.getMaxStorageCapacity());
 		entity.setCurrentStorageCapacity(form.getCurrentStorageCapacity());
-		entity.setDeleteFlag(form.getDeleteFlagRegister());
+		entity.setDeleteFlag(NumberValidConsts.DELETE_FLAG_REGISTER_NUMBER);
 		entity.setNotes(form.getNotes());
 		Timestamp currentTimestamp = Timestamp.valueOf(LocalDateTime.now());
 		entity.setCreateDate(currentTimestamp);
@@ -133,7 +134,7 @@ public class CenterInfoService {
 		entity.setOperationalStatus(form.getOperationalStatus());
 		entity.setMaxStorageCapacity(form.getMaxStorageCapacity());
 		entity.setCurrentStorageCapacity(form.getCurrentStorageCapacity());
-		entity.setDeleteFlag(form.getDeleteFlagRegister());
+		entity.setDeleteFlag(NumberValidConsts.DELETE_FLAG_REGISTER_NUMBER);
 		entity.setNotes(form.getNotes());
 		Timestamp currentTimestamp = Timestamp.valueOf(LocalDateTime.now());
 		entity.setUpdateDate(currentTimestamp);
@@ -150,22 +151,22 @@ public class CenterInfoService {
 	 * @return
 	 */
 	@Transactional
-	public void deleteCenterInfoData(CenterInfoForm form) {
+	public void deleteCenterInfoData(Integer centerId) {
 
 		// インスタンス化
 		CenterInfo entity = new CenterInfo();
 
 		//データベースの在庫センター情報を取得
-		entity = repository.findByCenterId(form.getCenterId());
+		entity = repository.findByCenterId(centerId);
 		
 		//在庫一覧とリンクしているセンター名があるか確認
-		if(repository.count(form.getCenterId()) > 0) {
+		if(repository.count(centerId) > 0) {
 			//在庫一覧とリンクしているセンター名がある場合、エラーを発生させて処理を中断する
 			throw new Error();
 		}
 
 		//各データを格納する
-		entity.setDeleteFlag(form.getDeleteFlagDeleter());
+		entity.setDeleteFlag(NumberValidConsts.DELETE_FLAG_DELETE_NUMBER);
 		Timestamp currentTimestamp = Timestamp.valueOf(LocalDateTime.now());
 		entity.setUpdateDate(currentTimestamp);
 

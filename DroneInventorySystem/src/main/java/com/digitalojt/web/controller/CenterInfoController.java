@@ -307,7 +307,7 @@ public class CenterInfoController extends AbstractController {
 	 * @return
 	 */
 	@PatchMapping(UrlConsts.CENTER_INFO_DELETE)
-	public String postDelete(Model model, @Valid CenterInfoForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+	public String postDelete(@ModelAttribute("centerId") Integer centerId, Model model, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
 		try {
 			// Valid項目チェック
@@ -316,12 +316,12 @@ public class CenterInfoController extends AbstractController {
 				// エラーメッセージをプロパティファイルから取得
 				redirectAttributes.addFlashAttribute("errorMsg", MessageManager.getMessage(messageSource, bindingResult.getGlobalError().getDefaultMessage()));
 
-				return "redirect:" + UrlConsts.CENTER_INFO_DELETE+"/"+form.getCenterId();
+				return "redirect:" + UrlConsts.CENTER_INFO_DELETE+"/"+centerId;
 
 			}
 
 			// データの更新(論理削除)処理を実行する
-			centerInfoService.deleteCenterInfoData(form);
+			centerInfoService.deleteCenterInfoData(centerId);
 
 			// 削除成功時のメッセージを設定する
 			redirectAttributes.addFlashAttribute("systemMsg", MessageManager.getMessage(messageSource, SystemMessage.CENTERINFO_DELETE_SUCCESS));
@@ -332,17 +332,17 @@ public class CenterInfoController extends AbstractController {
 		}catch(Error error) {
 			//在庫一覧でセンター名が使用されている際のエラー処理
 			redirectAttributes.addFlashAttribute("errorMsg", MessageManager.getMessage(messageSource, ErrorMessage.CENTERINFO_DELETE_LINKING_ERROR_MESSAGE));
-			return "redirect:" + UrlConsts.CENTER_INFO_DELETE+"/"+form.getCenterId();
+			return "redirect:" + UrlConsts.CENTER_INFO_DELETE+"/"+centerId;
 		}
 		catch (NullPointerException NullError) {
 			//Nullエラー処理
 			redirectAttributes.addFlashAttribute("errorMsg", MessageManager.getMessage(messageSource, ErrorMessage.LIST_EMPTY_ERROR_MESSAGE));
-			return "redirect:" + UrlConsts.CENTER_INFO_DELETE+"/"+form.getCenterId();
+			return "redirect:" + UrlConsts.CENTER_INFO_DELETE+"/"+centerId;
 		} 
 		catch (Exception error) {
 			//全ての例外処理
 			redirectAttributes.addFlashAttribute("errorMsg", MessageManager.getMessage(messageSource, ErrorMessage.UNEXPECT_ERROR_MESSAGE));
-			return "redirect:" + UrlConsts.CENTER_INFO_DELETE+"/"+form.getCenterId();
+			return "redirect:" + UrlConsts.CENTER_INFO_DELETE+"/"+centerId;
 		} 
 
 	}

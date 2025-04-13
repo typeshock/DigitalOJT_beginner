@@ -2,7 +2,6 @@ package com.digitalojt.web.form;
 
 import java.sql.Timestamp;
 
-import com.digitalojt.web.consts.NumberValidConsts;
 import com.digitalojt.web.validation.CenterInfoFormValidator;
 
 import jakarta.persistence.Id;
@@ -88,27 +87,5 @@ public class CenterInfoForm {
 	 * 更新日時
 	 */
 	private Timestamp updateDate;
-
-	/**
-	 * 論理削除フラグを未削除（0）に設定
-	 * 
-	 * @return
-	 */
-	public String getDeleteFlagRegister() {
-
-		deleteFlag = NumberValidConsts.DELETE_FLAG_REGISTER_NUMBER;
-		return deleteFlag;
-	}
-
-	/**
-	 * 論理削除フラグを削除（1）に設定
-	 * 
-	 * @return
-	 */
-	public String getDeleteFlagDeleter() {
-
-		deleteFlag = NumberValidConsts.DELETE_FLAG_DELETE_NUMBER;
-		return deleteFlag;
-	}
 
 }
