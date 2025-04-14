@@ -254,7 +254,12 @@ public class CenterInfoController extends AbstractController {
 			// 更新完了時に在庫センター情報画面にリダイレクト
 			return "redirect:" + UrlConsts.CENTER_INFO;
 
-		} catch (NullPointerException categoryNullError) {
+		} catch (Error linkingError) {
+			//エラー処理
+			redirectAttributes.addFlashAttribute("errorMsg", MessageManager.getMessage(messageSource, ErrorMessage.CENTERINFO_DELETE_LINKING_ERROR_MESSAGE));
+			return "redirect:" + UrlConsts.CENTER_INFO_UPDATE+"/"+form.getCenterId();
+		
+		} catch (NullPointerException NullError) {
 			//Nullエラー処理
 			redirectAttributes.addFlashAttribute("errorMsg", MessageManager.getMessage(messageSource, ErrorMessage.LIST_EMPTY_ERROR_MESSAGE));
 			return "redirect:" + UrlConsts.CENTER_INFO_UPDATE+"/"+form.getCenterId();
@@ -263,6 +268,81 @@ public class CenterInfoController extends AbstractController {
 			//全ての例外処理
 			redirectAttributes.addFlashAttribute("errorMsg", MessageManager.getMessage(messageSource, ErrorMessage.UNEXPECT_ERROR_MESSAGE));
 			return "redirect:" + UrlConsts.CENTER_INFO_UPDATE+"/"+form.getCenterId();
+		} 
+
+	}
+	
+
+	/**
+	 *削除画面表示
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@GetMapping(UrlConsts.CENTER_INFO_DELETE+"/{centerId}")
+	public String getDelete(Model model, @PathVariable("centerId") Integer centerId) {
+
+		try {
+			// 在庫センター情報画面に表示するデータを取得
+			CenterInfo centerInfoList = centerInfoService.getCenterInfoData(centerId);
+
+			// 画面表示用に商品情報リストをセット
+			model.addAttribute("centerInfoList", centerInfoList);
+
+			return UrlConsts.CENTER_INFO_DELETE;
+
+		} catch (Exception error) {
+			//全ての例外処理
+			String errorMsg = MessageManager.getMessage(messageSource, ErrorMessage.UNEXPECT_ERROR_MESSAGE);
+			model.addAttribute("errorMsg", errorMsg);
+			return UrlConsts.CENTER_INFO_DELETE;
+		}
+	}
+
+	/**
+	 * 削除処理
+	 * 
+	 * @param model
+	 * @param form
+	 * @return
+	 */
+	@PatchMapping(UrlConsts.CENTER_INFO_DELETE)
+	public String postDelete(@ModelAttribute("centerId") Integer centerId, Model model, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+
+		try {
+			// Valid項目チェック
+			if (bindingResult.hasErrors()) {
+
+				// エラーメッセージをプロパティファイルから取得
+				redirectAttributes.addFlashAttribute("errorMsg", MessageManager.getMessage(messageSource, bindingResult.getGlobalError().getDefaultMessage()));
+
+				return "redirect:" + UrlConsts.CENTER_INFO_DELETE+"/"+centerId;
+
+			}
+
+			// データの更新(論理削除)処理を実行する
+			centerInfoService.deleteCenterInfoData(centerId);
+
+			// 削除成功時のメッセージを設定する
+			redirectAttributes.addFlashAttribute("systemMsg", MessageManager.getMessage(messageSource, SystemMessage.CENTERINFO_DELETE_SUCCESS));
+
+			// 削除完了時に在庫センター情報画面にリダイレクト
+			return "redirect:" + UrlConsts.CENTER_INFO;
+
+		}catch(Error error) {
+			//在庫一覧でセンター名が使用されている際のエラー処理
+			redirectAttributes.addFlashAttribute("errorMsg", MessageManager.getMessage(messageSource, ErrorMessage.CENTERINFO_DELETE_LINKING_ERROR_MESSAGE));
+			return "redirect:" + UrlConsts.CENTER_INFO_DELETE+"/"+centerId;
+		}
+		catch (NullPointerException NullError) {
+			//Nullエラー処理
+			redirectAttributes.addFlashAttribute("errorMsg", MessageManager.getMessage(messageSource, ErrorMessage.LIST_EMPTY_ERROR_MESSAGE));
+			return "redirect:" + UrlConsts.CENTER_INFO_DELETE+"/"+centerId;
+		} 
+		catch (Exception error) {
+			//全ての例外処理
+			redirectAttributes.addFlashAttribute("errorMsg", MessageManager.getMessage(messageSource, ErrorMessage.UNEXPECT_ERROR_MESSAGE));
+			return "redirect:" + UrlConsts.CENTER_INFO_DELETE+"/"+centerId;
 		} 
 
 	}

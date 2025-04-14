@@ -79,55 +79,13 @@ public class CenterInfoForm {
 	private String deleteFlag;
 
 	/**
-	 * 論理削除フラグ登録時の初期値
-	 */
-	private String deleteFlagRegisterNumber = "0";
-
-	/**
-	 * 容量(From)
-	 */
-	private Integer storageCapacityFrom;
-
-	/**
-	 * 容量(To)
-	 */
-	private Integer storageCapacityTo;
-
-	// 容量(From)初期値
-	final int INITIAL_CAPACITY_FROM = 10;
-
-	/**
 	 * 作成日時
 	 */
 	private Timestamp createDate;
-	
+
 	/**
 	 * 更新日時
 	 */
 	private Timestamp updateDate;
-
-	/**
-	 * 容量(From)のデフォルト値（10）を設定
-	 * 
-	 * @return
-	 */
-	public Integer getStorageCapacityFrom() {
-
-		if (storageCapacityTo != null && storageCapacityFrom == null) {
-			return INITIAL_CAPACITY_FROM;
-		}
-		return storageCapacityFrom;
-	}
-
-	/**
-	 * 論理削除フラグを未削除（0）に設定
-	 * 
-	 * @return
-	 */
-	public String getDeleteFlagRegister() {
-
-		deleteFlag = deleteFlagRegisterNumber;
-		return deleteFlag;
-	}
 
 }
