@@ -32,4 +32,24 @@ public interface CenterInfoRepository extends JpaRepository<CenterInfo, Integer>
 			String centerName,
 			String region);
 
+	/**
+	 * 引数に合致する在庫センター情報を取得
+	 * 
+	 * @param centerId
+	 * @return paramで検索した結果
+	 */
+	@Query("SELECT s FROM CenterInfo s WHERE " +
+			"(:centerId = s.centerId)")
+	CenterInfo findByCenterId(Integer centerId);
+
+	/**
+	 * 引数に合致する在庫センター情報を在庫一覧からカウントする
+	 * 
+	 * @param centerId
+	 * @return paramで検索した結果
+	 */
+	@Query("SELECT COUNT(*) FROM StockInfo s WHERE " +
+			"(s.centerInfo.centerId=:centerId)")
+	int count(int centerId);
+
 }

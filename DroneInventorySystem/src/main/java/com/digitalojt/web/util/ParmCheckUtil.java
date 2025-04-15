@@ -85,21 +85,21 @@ public class ParmCheckUtil {
 	 * @return
 	 */
 	public static boolean isPostCode(String val) {
+
 		if (val != null) {
-			
+
+			// 郵便番号の正規表現を定義する
 			Pattern pattern = Pattern.compile(NumberValidConsts.PATTERN_POST_CODE);
+
+			// valと正規表現と一致するか確認する
 			Matcher matcher = pattern.matcher(val);
 			if (matcher.find()) {
-				
+				//一致している場合、エラー無しを示すfalseを返す
 				return false;
 			}
-			else {
-				return true;
-			}
-			
-			
-//			//郵便番号と同等の形式かつハイフンを除く数字以外の値があるとき、エラー判定を示すtrueを返す
-//			return NumberValidConsts.PATTERN_POST_CODE.matcher(val).matches();
+			// パターンと不一致の時にエラー判定を示すtrueを返す
+			return true;
+
 		}
 		//valがnullの時にエラー判定を示すtrueを返す
 		return true;
@@ -112,31 +112,21 @@ public class ParmCheckUtil {
 	 * @return
 	 */
 	public static boolean isPhoneNumber(String val) {
-		
 
 		if (val != null) {
-			
+
+			// 電話番号の正規表現を定義する
 			Pattern pattern = Pattern.compile(NumberValidConsts.PATTERN_PHONE_NUMBER);
+
+			// valと正規表現と一致するか確認する
 			Matcher matcher = pattern.matcher(val);
 			if (matcher.find()) {
-				
+				//一致している場合、エラー無しを示すfalseを返す
 				return false;
 			}
+			// パターンと不一致の時にエラー判定を示すtrueを返す
 			return true;
-//			Pattern pattern = Pattern.compile(NumberValidConsts.TEST_TEST);
-//			boolean result = false;
-//			NumberValidConsts.PATTERN_PHONE_NUMBER
-//			//郵便番号と同等の形式とき、形式が一致したことを示すtrueを返す
-//			result = pattern.matcher(val).matches();
-//
-//			//形式が一致しているとき、正常を示すfalseを返す
-//			if(result = true) {
-//				return false;
-//			}
-//			//形式が不一致のとき、エラー判定を示すtrueを返す
-//			else {
-//				return true;
-//			}
+
 		}
 		//valがnullの時にエラー判定を示すtrueを返す
 		return true;

@@ -37,4 +37,11 @@ public class NumberValidConsts {
 
 	//稼働停止状態の値
 	public static final String INVALID_NUMBER = "1";
+
+	//論理削除フラグの未削除状態の値
+	public static final String DELETE_FLAG_REGISTER_NUMBER = "0";
+
+  //論理削除フラグの削除状態の値
+	public static final String DELETE_FLAG_DELETE_NUMBER = "1";
+
 }
