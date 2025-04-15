@@ -87,6 +87,7 @@
 					<!-- ボタン -->
 					<div class="d-flex justify-content-between">
 						<a href="/admin/centerInfo" class="btn btn-secondary btn-sm">キャンセル</a>
+						<a th:href="@{/admin/centerInfo/delete/{id}(id=${centerInfoList.centerId})}" class="btn btn-secondary btn-sm">削除する</a>
 						<button type="submit" class="btn btn-success btn-sm">更新する</button>
 					</div>
 				</form>
