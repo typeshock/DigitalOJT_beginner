@@ -18,6 +18,14 @@ import com.digitalojt.web.entity.CenterInfo;
 public interface CenterInfoRepository extends JpaRepository<CenterInfo, Integer> {
 
 	/**
+	 * IDでソートした在庫センター情報を全件取得
+	 * 
+	 * @param centerId
+	 * @return paramで検索した結果
+	 */
+	List<CenterInfo> findAllByOrderByCenterId();
+
+	/**
 	 * 引数に合致する在庫センター情報を取得
 	 * 
 	 * @param centerName

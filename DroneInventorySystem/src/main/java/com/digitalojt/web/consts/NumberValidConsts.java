@@ -29,8 +29,14 @@ public class NumberValidConsts {
 	//郵便番号の形式の設定
 	public static final String PATTERN_POST_CODE = "^[0-9]{3}-[0-9]{4}$";
 
-	//電話番号の形式の設定
-	public static final String PATTERN_PHONE_NUMBER = "^[0-9]{3}-[0-9]{4}-[0-9]{4}$";
+	//電話番号(000-0000-0000)の形式の設定
+	public static final String PATTERN_PHONE_NUMBER_A = "^[0-9]{3}-[0-9]{4}-[0-9]{4}$";
+
+	//電話番号(00-0000-0000)の形式の設定
+	public static final String PATTERN_PHONE_NUMBER_B = "^[0-9]{2}-[0-9]{4}-[0-9]{4}$";
+
+	//電話番号(000-000-0000)の形式の設定
+	public static final String PATTERN_PHONE_NUMBER_C = "^[0-9]{3}-[0-9]{3}-[0-9]{4}$";
 
 	//稼働状態の値
 	public static final String VALID_NUMBER = "0";

@@ -27,7 +27,7 @@ public class ErrorMessage {
 	public static final String INVALID_FORMAT_ERROR_MESSAGE = "invaled.format";
 
 	// 文字超過に関するエラーメッセージ センター情報
-	public static final String CENTER_NAME_LENGTH_ERROR_MESSAGE = "centerName.length.input";
+	public static final String CENTER_NAME_LENGTH_ERROR_MESSAGE = "centerName.length.wrongInput";
 
 	// 文字超過に関するエラーメッセージ 分類情報
 	public static final String CATEGORY_NAME_LENGTH_ERROR_MESSAGE = "categoryName.length.input";

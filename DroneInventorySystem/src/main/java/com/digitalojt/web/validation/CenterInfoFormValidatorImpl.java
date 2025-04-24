@@ -184,16 +184,16 @@ public class CenterInfoFormValidatorImpl implements ConstraintValidator<CenterIn
 		// 備考のチェック
 		if (form.getNotes() != null) {
 			// 不正文字列チェック
-			if (ParmCheckUtil.isParameterInvalid(form.getCurrentStorageCapacity())) {
+			if (ParmCheckUtil.isParameterInvalid(form.getNotes())) {
 				context.disableDefaultConstraintViolation();
 				context.buildConstraintViolationWithTemplate(ErrorMessage.INVALID_INPUT_ERROR_MESSAGE).addConstraintViolation();
 				return false;
 			}
 
 			// 文字数チェック
-			if (form.getCenterName().length() > NumberValidConsts.MAX_LENGTH) {
+			if (form.getNotes().length() > NumberValidConsts.MAX_LENGTH) {
 				context.disableDefaultConstraintViolation();
-				context.buildConstraintViolationWithTemplate(ErrorMessage.CENTER_NAME_LENGTH_ERROR_MESSAGE).addConstraintViolation();
+				context.buildConstraintViolationWithTemplate(ErrorMessage.NAME_LENGTH_ERROR_MESSAGE).addConstraintViolation();
 				return false;
 			}
 		}
