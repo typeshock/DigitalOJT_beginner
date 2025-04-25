@@ -33,7 +33,7 @@ public class CenterInfoService {
 	 * @return
 	 */
 	public List<CenterInfo> getCenterInfoData() {
-		return repository.findAll();
+		return repository.findAllByOrderByCenterId();
 	}
 
 	/**

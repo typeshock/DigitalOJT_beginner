@@ -116,12 +116,17 @@ public class ParmCheckUtil {
 		if (val != null) {
 
 			// 電話番号の正規表現を定義する
-			Pattern pattern = Pattern.compile(NumberValidConsts.PATTERN_PHONE_NUMBER);
+			Pattern patternA = Pattern.compile(NumberValidConsts.PATTERN_PHONE_NUMBER_A);
+			Pattern patternB = Pattern.compile(NumberValidConsts.PATTERN_PHONE_NUMBER_B);
+			Pattern patternC = Pattern.compile(NumberValidConsts.PATTERN_PHONE_NUMBER_C);
 
 			// valと正規表現と一致するか確認する
-			Matcher matcher = pattern.matcher(val);
-			if (matcher.find()) {
-				//一致している場合、エラー無しを示すfalseを返す
+			Matcher matcherA = patternA.matcher(val);
+			Matcher matcherB = patternB.matcher(val);
+			Matcher matcherC = patternC.matcher(val);
+
+			if (matcherA.find() || matcherB.find() || matcherC.find() ) {
+				//電話番号の形式いずれかと一致している場合、エラー無しを示すfalseを返す
 				return false;
 			}
 			// パターンと不一致の時にエラー判定を示すtrueを返す
